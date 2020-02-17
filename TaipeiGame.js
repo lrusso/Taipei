@@ -247,7 +247,7 @@ Taipei.Preloader.prototype = {
 		this.game.renderer.renderSession.roundPixels = false;
 
 		var scaleX = window.innerWidth / 800;
-		var scaleY = window.innerHeight / 450;
+		var scaleY = window.innerHeight / 432;
 		var scale = Math.min(scaleX, scaleY);
 		this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 		this.scale.setUserScale(scale, scale);
@@ -279,7 +279,7 @@ Taipei.Game = function (game)
 	function resizeF()
 		{
 		var scaleX = window.innerWidth / 800;
-		var scaleY = window.innerHeight / 450;
+		var scaleY = window.innerHeight / 432;
 		var scale = Math.min(scaleX, scaleY);
 		game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 		game.scale.setUserScale(scale, scale);
@@ -394,7 +394,7 @@ Taipei.Game.prototype = {
 		}
 	};
 
-var game = new Phaser.Game(800, 450, Phaser.WEBGL, "game", null, false, true);
+var game = new Phaser.Game(800, 432, Phaser.WEBGL, "game", null, false, true);
 game.state.add("Taipei.Preloader", Taipei.Preloader);
 game.state.add("Taipei.Game", Taipei.Game);
 game.state.start("Taipei.Preloader");
