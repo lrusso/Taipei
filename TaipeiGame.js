@@ -5,7 +5,7 @@ var Taipei = {showDebug: false, turnPlayer1: 0, turnPlayer2: 1, typeStripes: 1, 
 
 var width = 800;
 var height = 432;
-var nbTile = 20;
+var nbTile = 42;
 var tileWidth = 47;
 var tileHeight = 59;
 var tilesList = new Array();
