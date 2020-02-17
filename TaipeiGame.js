@@ -379,6 +379,7 @@ Taipei.Game.prototype = {
 	restartGame: function ()
 		{
 		this.state.restart();
+		lastTile = null;
 		},
 
 	update: function ()
