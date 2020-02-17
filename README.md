@@ -2,6 +2,8 @@
 
 Taipei game in JavaScript.
 
+![alt screenshot](https://raw.githubusercontent.com/lrusso/Taipei/master/Taipei.png)
+
 ## Web:
 
 https://lrusso.github.io/Taipei/Taipei.htm
