@@ -7,7 +7,6 @@ var TaipeiAnswers = ["You will attend a party where strange customs prevail.", "
 var tilesGroup;
 var aPosit = new Array();
 var lastTile = null;
-var nbMatch = 0;
 
 Taipei.Preloader = function () {};
 
@@ -387,7 +386,6 @@ Taipei.Game.prototype = {
 					tile.destroy();
 					aPosit[tile.floor][tile.posit].destroy = 1;
 					aPosit[lastTile.floor][lastTile.posit].destroy = 1;
-					nbMatch++;
 
 					if (tilesGroup.children.length / 2==0)
 						{
@@ -399,8 +397,6 @@ Taipei.Game.prototype = {
 						toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
 						toastText.setTextBounds(0, 380, 800, 55);
 						toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
-						//str = str.replace("[%nb_match%]", nbMatch);
-						//str = str.replace("[%nb_tofind%]", (tilesGroup.children.length / 2));
 						}
 					}
 					else
