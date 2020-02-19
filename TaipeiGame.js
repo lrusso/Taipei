@@ -233,6 +233,16 @@ function matching(tile)
 
 function updateGameInfo()
 	{
+	if (tilesGroup.children.length / 2==0)
+		{
+		var toastShadow = game.add.graphics();
+		toastShadow.beginFill(0x000000, 0.4);
+		var toastText = game.add.text(0, 0, "You Won!", { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+		toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
+		toastText.setTextBounds(0, 380, 800, 55);
+		toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
+		}
+
 	//str = str.replace("[%nb_match%]", nbMatch);
 	//str = str.replace("[%nb_tofind%]", (tilesGroup.children.length / 2));
 	}
@@ -360,8 +370,6 @@ Taipei.Game.prototype = {
 		buttonRestartShadow.alpha = 0.7;
 		var buttonRestart = this.add.button(3, 3, "restart", null, this, 2, 1, 0);
 		buttonRestart.onInputUp.add(this.restartGame, this);
-
-		updateGameInfo();
 
 		shuffleTiles();
 
