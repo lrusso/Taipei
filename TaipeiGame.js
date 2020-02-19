@@ -9,119 +9,6 @@ var lastTile = null;
 var nbMatch = 0;
 var answers = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight.  Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good -- use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Congratulations on winning Taipei!", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 
-function canSelect(tile)
-	{
-	floor = tile.floor;
-	posit = tile.id;
-	index = tile.posit;
-	leftTile = parseInt(index - 1);
-	rightTile = parseInt(index + 1);
-	haveTileLeft = false;
-	haveTileRight = false;
-
-	if (aPosit[floor][posit].haveTileLeft)
-		{
-		haveTileLeft = aPosit[floor][posit].haveTileLeft;
-		}
-
-	if (aPosit[floor][posit].haveTileRight)
-		{
-		haveTileRight = aPosit[floor][posit].haveTileRight;
-		}
-
-	var bRet = true;
-	if (!haveTileLeft || !haveTileRight)
-		{
-		bRet = true;
-		}
-		else
-		{
-		if ((aPosit[floor][leftTile].destroy === 1) || (aPosit[floor][rightTile].destroy === 1))
-			{
-			bRet = true;
-			}
-			else
-			{
-			bRet = false;
-			}
-		}
-
-	if (bRet==true)
-		{
-		for (var i=0;i<tilesGroup.length;i++)
-			{
-			var tileAboveCurrentX = tilesGroup.children[i].position.x;
-			var tileAboveCurrentY = tilesGroup.children[i].position.y;
-			if (
-					(
-						tileAboveCurrentX >= tile.position.x + 5 &&
-						tileAboveCurrentX <= tile.position.x + 10
-					)
-					&&
-					(
-						tileAboveCurrentY >= tile.position.y - 10 &&
-						tileAboveCurrentY <= tile.position.y - 5
-					)
-				)
-				{
-				bRet = false;
-				}
-			}
-		}
-
-	return bRet;
-	}
-
-function matching(tile)
-	{
-	if (canSelect(tile))
-		{
-		tile.tint = 9999999;
-
-		if (lastTile != null)
-			{
-			if ((lastTile.frame == tile.frame) && (lastTile.z != tile.z))
-				{
-				lastTile.destroy();
-				tile.destroy();
-				aPosit[tile.floor][tile.posit].destroy = 1;
-				aPosit[lastTile.floor][lastTile.posit].destroy = 1;
-				nbMatch++;
-				updateGameInfo();
-				}
-				else
-				{
-				tile.tint = 16777215;
-				if (lastTile!=null)
-				lastTile.tint = 16777215;
-				}
-			lastTile = null;
-			}
-		else
-			{
-			lastTile = tile;
-			tile.tint = 9999999;
-			}
-		}
-	}
-
-function updateGameInfo()
-	{
-	if (tilesGroup.children.length / 2==0)
-		{
-		var toastShadow = game.add.graphics();
-		toastShadow.beginFill(0x000000, 0.4);
-		var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
-		var randomAnswer = answers[randomNumber];
-		var toastText = game.add.text(0, 0, randomAnswer, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
-		toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-		toastText.setTextBounds(0, 380, 800, 55);
-		toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
-		}
-	//str = str.replace("[%nb_match%]", nbMatch);
-	//str = str.replace("[%nb_tofind%]", (tilesGroup.children.length / 2));
-	}
-
 Taipei.Preloader = function () {};
 
 Taipei.Preloader.prototype = {
@@ -259,7 +146,7 @@ Taipei.Game.prototype = {
 
 		this.shuffleTiles();
 
-		tilesGroup.callAll("events.onInputDown.add", "events.onInputDown", matching);
+		tilesGroup.callAll("events.onInputDown.add", "events.onInputDown", this.matching);
 
 		// About
 		if (this.splash==true)
@@ -424,6 +311,113 @@ Taipei.Game.prototype = {
 		for (var i = 0; i < tilesGroup.children.length; i++)
 			{
 			tilesGroup.children[i].frame = aOriginTile[i].frame;
+			}
+		},
+
+	matching: function(tile)
+		{
+		var canBeSelected = true;
+
+		floor = tile.floor;
+		posit = tile.id;
+		index = tile.posit;
+		leftTile = parseInt(index - 1);
+		rightTile = parseInt(index + 1);
+		haveTileLeft = false;
+		haveTileRight = false;
+
+		if (aPosit[floor][posit].haveTileLeft)
+			{
+			haveTileLeft = aPosit[floor][posit].haveTileLeft;
+			}
+
+		if (aPosit[floor][posit].haveTileRight)
+			{
+			haveTileRight = aPosit[floor][posit].haveTileRight;
+			}
+
+		if (!haveTileLeft || !haveTileRight)
+			{
+			canBeSelected = true;
+			}
+			else
+			{
+			if ((aPosit[floor][leftTile].destroy === 1) || (aPosit[floor][rightTile].destroy === 1))
+				{
+				canBeSelected = true;
+				}
+				else
+				{
+				canBeSelected = false;
+				}
+			}
+
+		if (canBeSelected==true)
+			{
+			for (var i=0;i<tilesGroup.length;i++)
+				{
+				var tileAboveCurrentX = tilesGroup.children[i].position.x;
+				var tileAboveCurrentY = tilesGroup.children[i].position.y;
+				if (
+						(
+							tileAboveCurrentX >= tile.position.x + 5 &&
+							tileAboveCurrentX <= tile.position.x + 10
+						)
+						&&
+						(
+							tileAboveCurrentY >= tile.position.y - 10 &&
+							tileAboveCurrentY <= tile.position.y - 5
+						)
+					)
+					{
+					canBeSelected = false;
+					}
+				}
+			}
+
+		if (canBeSelected==true)
+			{
+			tile.tint = 9999999;
+
+			if (lastTile != null)
+				{
+				if ((lastTile.frame == tile.frame) && (lastTile.z != tile.z))
+					{
+					lastTile.destroy();
+					tile.destroy();
+					aPosit[tile.floor][tile.posit].destroy = 1;
+					aPosit[lastTile.floor][lastTile.posit].destroy = 1;
+					nbMatch++;
+
+					if (tilesGroup.children.length / 2==0)
+						{
+						var toastShadow = game.add.graphics();
+						toastShadow.beginFill(0x000000, 0.4);
+						var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
+						var randomAnswer = answers[randomNumber];
+						var toastText = game.add.text(0, 0, randomAnswer, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+						toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
+						toastText.setTextBounds(0, 380, 800, 55);
+						toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
+						//str = str.replace("[%nb_match%]", nbMatch);
+						//str = str.replace("[%nb_tofind%]", (tilesGroup.children.length / 2));
+						}
+					}
+					else
+					{
+					tile.tint = 16777215;
+					if (lastTile!=null)
+						{
+						lastTile.tint = 16777215;
+						}
+					}
+				lastTile = null;
+				}
+			else
+				{
+				lastTile = tile;
+				tile.tint = 9999999;
+				}
 			}
 		},
 
