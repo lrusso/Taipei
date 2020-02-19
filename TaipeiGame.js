@@ -7,6 +7,7 @@ var tilesGroup;
 var aPosit = new Array();
 var lastTile = null;
 var nbMatch = 0;
+var answers = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight.  Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good -- use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Congratulations on winning Taipei!", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 
 function canSelect(tile)
 	{
@@ -110,7 +111,9 @@ function updateGameInfo()
 		{
 		var toastShadow = game.add.graphics();
 		toastShadow.beginFill(0x000000, 0.4);
-		var toastText = game.add.text(0, 0, "You Won!", { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+		var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
+		var randomAnswer = answers[randomNumber];
+		var toastText = game.add.text(0, 0, randomAnswer, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 		toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
 		toastText.setTextBounds(0, 380, 800, 55);
 		toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
