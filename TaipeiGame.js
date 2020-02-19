@@ -3,160 +3,10 @@
 
 var Taipei = {showDebug: false, turnPlayer1: 0, turnPlayer2: 1, typeStripes: 1, typeSolids: 0, WHITE: 0, YELLOW: 1, BLUE: 2, RED: 3, PURPLE: 4, ORANGE: 5, GREEN: 6, BROWN: 7, BLACK: 8, NINE: 9, TEN: 10, ELEVEN: 11, TWELVE: 12, THIRTHEEN: 13, FOURTEEN: 14, FIFTEEN: 15};
 
-var width = 800;
-var height = 432;
-var nbTile = 42;
-var tileWidth = 54;
-var tileHeight = 66;
-var tilesList = new Array();
-var playableTile = 18;
-var nbTileRow = 6;
-var nbTileToMiddle = parseInt(nbTileRow / 2);
 var tilesGroup;
 var aPosit = new Array();
 var lastTile = null;
 var nbMatch = 0;
-
-Array.prototype.hasValue = function(value)
-	{
-	var i;
-	for (i=0; i<this.length; i++)
-		{
-		if (this[i] === value)
-			{
-			return true;
-			}
-		}
-	return false;
-	}
-
-function generateTileList()
-	{
-	var nbTotlTile = 0;
-
-	for (var i = 0; i < (nbTileRow / 2); i++)
-		{
-		nbTotlTile += (nbTileRow - (i * 2)) * (nbTileRow - (i * 2));
-		}
-
-	alreadyFrame = new Array();
-
-	nbTotlTile = nbTotlTile / 2;
-
-	for (var i = 0; i < nbTotlTile; i++)
-		{
-		do
-			{
-			if (alreadyFrame.length >= nbTile)
-				{
-				alreadyFrame = new Array();
-				}
-			var frame = parseInt(Math.random() * nbTile);
-			}
-		while (alreadyFrame.hasValue(frame) != false);
-
-		alreadyFrame.push(frame);
-		var a = {"frame": frame};
-		tilesList.push(a, a);
-		}
-	}
-
-function shufflingTiles()
-	{
-	var aPositFloor = Array();
-	var middle_left = width / 2;
-	var middle_top = height / 2;
-	var base_x = middle_left - (nbTileToMiddle * (tileWidth-7));
-	var base_y = middle_top - (nbTileToMiddle * ((tileHeight-7)));
-	var x = middle_left - (nbTileToMiddle * (tileWidth-7));
-	var y = middle_top - (nbTileToMiddle * (tileHeight-7));
-	var nbElemRow = 0;
-	var haveTileLeft;
-	var haveTileRight;
-	var TileByFloor = playableTile;
-	var floor = 0;
-
-	// Ground
-	for (var i = 0; i < TileByFloor * 2; i++)
-		{
-		haveTileLeft = ((i % nbTileRow) === 0) ? false : true;
-		haveTileRight = (((i + 1) % nbTileRow) == 0) ? false : true;
-		aPositFloor[i] = {i: i, x: parseInt(parseFloat(x + (nbElemRow * (tileWidth-7)))), y: parseInt(y), destroy: 0, haveTileLeft: haveTileLeft, haveTileRight: haveTileRight};
-		nbElemRow++;
-
-		if (nbElemRow >= nbTileRow)
-			{
-			nbElemRow = 0;
-			y += parseFloat((tileHeight-7));
-			}
-		}
-
-	// Floor
-	aPosit[floor] = aPositFloor;
-	floorNbTile = nbTileRow;
-	floor++;
-
-	for (var z = 0; z < (nbTileToMiddle - 1); z++)
-		{
-		nbElemRow = 0;
-		floorNbTile = Math.ceil(floorNbTile - ((floorNbTile / 3) * floor));
-		aPositFloor = Array();
-		TileByFloor = TileByFloor / 3;
-		var indBcl = floorNbTile;
-		if (indBcl > 2)
-			{
-			indBcl = indBcl * 2;
-			}
-
-		x = ((middle_left - (nbTileToMiddle * (tileWidth-7))) + ((tileWidth-7) * floor)) + (floor * 8);
-		y = ((middle_top - (nbTileToMiddle * (tileHeight-7))) + ((tileHeight-7) * floor)) - (floor * 8);
-
-		for (var i = 0; i < (indBcl * 2); i++)
-			{
-			haveTileLeft = ((i % floorNbTile) === 0) ? false : true;
-			haveTileRight = (((i + 1) % floorNbTile) == 0) ? false : true;
-			aPositFloor.push({i: i, x: parseInt(parseFloat(x + (nbElemRow * (tileWidth-7)))), y: parseInt(y), destroy: 0, haveTileLeft: haveTileLeft, haveTileRight: haveTileRight});
-			nbElemRow++;
-
-			if (nbElemRow >= floorNbTile)
-				{
-				nbElemRow = 0;
-				y += parseFloat((tileHeight-7));
-				}
-			}
-
-		aPosit[floor] = aPositFloor;
-		floor++;
-		}
-	}
-
-function shuffle(array)
-	{
-	for (var i = array.length - 1; i > 0; i--)
-		{
-		var j = Math.floor(Math.random() * (i + 1));
-		var temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-		}
-	return array;
-	}
-
-function shuffleTiles()
-	{
-	var aOriginTile = new Array();
-	for (var i = 0; i < tilesGroup.children.length; i++)
-		{
-		aOriginTile.push({frame: tilesGroup.children[i].frame});
-		}
-
-	aOriginTile = shuffle(aOriginTile);
-
-	for (var i = 0; i < tilesGroup.children.length; i++)
-		{
-		tilesGroup.children[i].frame = aOriginTile[i].frame;
-		}
-	}
 
 function canSelect(tile)
 	{
@@ -242,7 +92,6 @@ function updateGameInfo()
 		toastText.setTextBounds(0, 380, 800, 55);
 		toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
 		}
-
 	//str = str.replace("[%nb_match%]", nbMatch);
 	//str = str.replace("[%nb_tofind%]", (tilesGroup.children.length / 2));
 	}
@@ -286,6 +135,17 @@ Taipei.Game = function (game)
 	{
 	this.splash = true;
 
+	this.width = 800;
+	this.height = 432;
+
+	this.nbTile = 42;
+	this.tileWidth = 54;
+	this.tileHeight = 66;
+	this.tilesList = new Array();
+	this.playableTile = 18;
+	this.nbTileRow = 6;
+	this.nbTileToMiddle = parseInt(this.nbTileRow / 2);
+
 	function resizeF()
 		{
 		var scaleX = window.innerWidth / 800;
@@ -309,8 +169,8 @@ Taipei.Game.prototype = {
 
 	create: function ()
 		{
-		shufflingTiles();
-		generateTileList();
+		this.shufflingTiles();
+		this.generateTileList();
 
 		aPosit[0] = aPosit[0].sort( function ( a, b ) { return a.x - b.x; } );
 		aPosit[0] = aPosit[0].sort( function ( a, b ) { return b.y - a.y; } );
@@ -323,14 +183,14 @@ Taipei.Game.prototype = {
 		this.add.sprite(0, 0, "background");
 
 		tilesGroup = this.add.group();
-		var TileByFloor = playableTile;
+		var TileByFloor = this.playableTile;
 		var alreadyFrame = new Array();
 
-		for (var z = 0; z < parseInt(nbTileToMiddle); z++)
+		for (var z = 0; z < parseInt(this.nbTileToMiddle); z++)
 			{
 			if (z > 0)
 				{
-				TileByFloor = Math.ceil(nbTileRow - ((nbTileRow / 3) * z));
+				TileByFloor = Math.ceil(this.nbTileRow - ((this.nbTileRow / 3) * z));
 				if (TileByFloor > 2)
 					{
 					TileByFloor = TileByFloor * 2;
@@ -343,7 +203,7 @@ Taipei.Game.prototype = {
 
 			for (var i = 0; i < TileByFloor; i++)
 				{
-				var frame = parseInt(tilesList[j].frame);
+				var frame = parseInt(this.tilesList[j].frame);
 				var tile = tilesGroup.create(aPosit[z][j].x, aPosit[z][j].y, "tiles");
 				tile.inputEnabled = true;
 				tile.input.useHandCursor = true;
@@ -352,7 +212,7 @@ Taipei.Game.prototype = {
 				tile.id = j;
 				tile.posit = aPosit[z][j].i;
 				j--;
-				var frame = parseInt(tilesList[j].frame);
+				var frame = parseInt(this.tilesList[j].frame);
 				var tile = tilesGroup.create(aPosit[z][j].x, aPosit[z][j].y, "tiles");
 				tile.inputEnabled = true;
 				tile.input.useHandCursor = true;
@@ -371,7 +231,7 @@ Taipei.Game.prototype = {
 		var buttonRestart = this.add.button(3, 3, "restart", null, this, 2, 1, 0);
 		buttonRestart.onInputUp.add(this.restartGame, this);
 
-		shuffleTiles();
+		this.shuffleTiles();
 
 		tilesGroup.callAll("events.onInputDown.add", "events.onInputDown", matching);
 
@@ -397,6 +257,148 @@ Taipei.Game.prototype = {
 		{
 		this.state.restart();
 		lastTile = null;
+		this.tilesList = new Array();
+		},
+
+	shufflingTiles: function ()
+		{
+		var aPositFloor = Array();
+		var middle_left = this.width / 2;
+		var middle_top = this.height / 2;
+		var base_x = middle_left - (this.nbTileToMiddle * (this.tileWidth-7));
+		var base_y = middle_top - (this.nbTileToMiddle * ((this.tileHeight-7)));
+		var x = middle_left - (this.nbTileToMiddle * (this.tileWidth-7));
+		var y = middle_top - (this.nbTileToMiddle * (this.tileHeight-7));
+		var nbElemRow = 0;
+		var haveTileLeft;
+		var haveTileRight;
+		var TileByFloor = this.playableTile;
+		var floor = 0;
+
+		// Ground
+		for (var i = 0; i < TileByFloor * 2; i++)
+			{
+			haveTileLeft = ((i % this.nbTileRow) === 0) ? false : true;
+			haveTileRight = (((i + 1) % this.nbTileRow) == 0) ? false : true;
+			aPositFloor[i] = {i: i, x: parseInt(parseFloat(x + (nbElemRow * (this.tileWidth-7)))), y: parseInt(y), destroy: 0, haveTileLeft: haveTileLeft, haveTileRight: haveTileRight};
+			nbElemRow++;
+
+			if (nbElemRow >= this.nbTileRow)
+				{
+				nbElemRow = 0;
+				y += parseFloat((this.tileHeight-7));
+				}
+			}
+
+		// Floor
+		aPosit[floor] = aPositFloor;
+		floorNbTile = this.nbTileRow;
+		floor++;
+
+		for (var z = 0; z < (this.nbTileToMiddle - 1); z++)
+			{
+			nbElemRow = 0;
+			floorNbTile = Math.ceil(floorNbTile - ((floorNbTile / 3) * floor));
+			aPositFloor = Array();
+			TileByFloor = TileByFloor / 3;
+			var indBcl = floorNbTile;
+			if (indBcl > 2)
+				{
+				indBcl = indBcl * 2;
+				}
+
+			x = ((middle_left - (this.nbTileToMiddle * (this.tileWidth-7))) + ((this.tileWidth-7) * floor)) + (floor * 8);
+			y = ((middle_top - (this.nbTileToMiddle * (this.tileHeight-7))) + ((this.tileHeight-7) * floor)) - (floor * 8);
+
+			for (var i = 0; i < (indBcl * 2); i++)
+				{
+				haveTileLeft = ((i % floorNbTile) === 0) ? false : true;
+				haveTileRight = (((i + 1) % floorNbTile) == 0) ? false : true;
+				aPositFloor.push({i: i, x: parseInt(parseFloat(x + (nbElemRow * (this.tileWidth-7)))), y: parseInt(y), destroy: 0, haveTileLeft: haveTileLeft, haveTileRight: haveTileRight});
+				nbElemRow++;
+
+				if (nbElemRow >= floorNbTile)
+					{
+					nbElemRow = 0;
+					y += parseFloat((this.tileHeight-7));
+					}
+				}
+
+			aPosit[floor] = aPositFloor;
+			floor++;
+			}
+		},
+
+	generateTileList: function ()
+		{
+		Array.prototype.hasValue = function(value)
+			{
+			var i;
+			for (i=0; i<this.length; i++)
+				{
+				if (this[i] === value)
+					{
+					return true;
+					}
+				}
+			return false;
+			}
+
+		var nbTotlTile = 0;
+
+		for (var i = 0; i < (this.nbTileRow / 2); i++)
+			{
+			nbTotlTile += (this.nbTileRow - (i * 2)) * (this.nbTileRow - (i * 2));
+			}
+
+		alreadyFrame = new Array();
+
+		nbTotlTile = nbTotlTile / 2;
+
+		for (var i = 0; i < nbTotlTile; i++)
+			{
+			do
+				{
+				if (alreadyFrame.length >= this.nbTile)
+					{
+					alreadyFrame = new Array();
+					}
+				var frame = parseInt(Math.random() * this.nbTile);
+				}
+			while (alreadyFrame.hasValue(frame) != false);
+
+			alreadyFrame.push(frame);
+			var a = {"frame": frame};
+			this.tilesList.push(a, a);
+			}
+		},
+
+	shuffleTiles: function ()
+		{
+		function shuffle(array)
+			{
+			for (var i = array.length - 1; i > 0; i--)
+				{
+				var j = Math.floor(Math.random() * (i + 1));
+				var temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				}
+			return array;
+			}
+
+		var aOriginTile = new Array();
+		for (var i = 0; i < tilesGroup.children.length; i++)
+			{
+			aOriginTile.push({frame: tilesGroup.children[i].frame});
+			}
+
+		aOriginTile = shuffle(aOriginTile);
+
+		for (var i = 0; i < tilesGroup.children.length; i++)
+			{
+			tilesGroup.children[i].frame = aOriginTile[i].frame;
+			}
 		},
 
 	update: function ()
