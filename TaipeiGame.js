@@ -45,6 +45,29 @@ function canSelect(tile)
 			}
 		}
 
+	if (bRet==true)
+		{
+		for (var i=0;i<tilesGroup.length;i++)
+			{
+			var tileAboveCurrentX = tilesGroup.children[i].position.x;
+			var tileAboveCurrentY = tilesGroup.children[i].position.y;
+			if (
+					(
+						tileAboveCurrentX >= tile.position.x + 5 &&
+						tileAboveCurrentX <= tile.position.x + 10
+					)
+					&&
+					(
+						tileAboveCurrentY >= tile.position.y - 10 &&
+						tileAboveCurrentY <= tile.position.y - 5
+					)
+				)
+				{
+				bRet = false;
+				}
+			}
+		}
+
 	return bRet;
 	}
 
