@@ -6,7 +6,6 @@ var TaipeiAnswers = ["You will attend a party where strange customs prevail.", "
 
 var tilesGroup;
 var aPosit = new Array();
-var lastTile = null;
 
 Taipei.Preloader = function () {};
 
@@ -57,6 +56,8 @@ Taipei.Game = function (game)
 	this.playableTile = 18;
 	this.nbTileRow = 6;
 	this.nbTileToMiddle = parseInt(this.nbTileRow / 2);
+
+	this.lastTile = null;
 
 	function resizeF()
 		{
@@ -168,7 +169,7 @@ Taipei.Game.prototype = {
 	restartGame: function ()
 		{
 		this.state.restart();
-		lastTile = null;
+		this.lastTile = null;
 		this.tilesList = new Array();
 		},
 
@@ -378,14 +379,14 @@ Taipei.Game.prototype = {
 			{
 			tile.tint = 9999999;
 
-			if (lastTile != null)
+			if (this.lastTile != null)
 				{
-				if ((lastTile.frame == tile.frame) && (lastTile.z != tile.z))
+				if ((this.lastTile.frame == tile.frame) && (this.lastTile.z != tile.z))
 					{
-					lastTile.destroy();
+					this.lastTile.destroy();
 					tile.destroy();
 					aPosit[tile.floor][tile.posit].destroy = 1;
-					aPosit[lastTile.floor][lastTile.posit].destroy = 1;
+					aPosit[this.lastTile.floor][this.lastTile.posit].destroy = 1;
 
 					if (tilesGroup.children.length / 2==0)
 						{
@@ -402,16 +403,16 @@ Taipei.Game.prototype = {
 					else
 					{
 					tile.tint = 16777215;
-					if (lastTile!=null)
+					if (this.lastTile!=null)
 						{
-						lastTile.tint = 16777215;
+						this.lastTile.tint = 16777215;
 						}
 					}
-				lastTile = null;
+				this.lastTile = null;
 				}
 			else
 				{
-				lastTile = tile;
+				this.lastTile = tile;
 				tile.tint = 9999999;
 				}
 			}
