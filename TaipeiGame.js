@@ -416,7 +416,7 @@ Taipei.Game.prototype = {
 
 	checkGameStatus: function ()
 		{
-		if (this.tilesGroup.children.length / 2==0)
+		if (this.tilesGroup.children.length / 2 == 0)
 			{
 			var toastShadow = game.add.graphics();
 			toastShadow.beginFill(0x000000, 0.4);
