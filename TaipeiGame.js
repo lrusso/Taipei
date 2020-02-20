@@ -4,7 +4,6 @@
 var Taipei = {showDebug: false};
 var TaipeiAnswers = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight.  Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good -- use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Congratulations on winning Taipei!", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 
-var tilesGroup;
 var aPosit = new Array();
 
 Taipei.Preloader = function () {};
@@ -58,6 +57,7 @@ Taipei.Game = function (game)
 	this.nbTileToMiddle = parseInt(this.nbTileRow / 2);
 
 	this.lastTile = null;
+	this.tilesGroup = null;
 
 	function resizeF()
 		{
@@ -82,6 +82,11 @@ Taipei.Game.prototype = {
 
 	create: function ()
 		{
+		// Setting the background image
+		this.add.sprite(0, 0, "background");
+
+		this.tilesGroup = this.add.group();
+
 		this.shufflingTiles();
 		this.generateTileList();
 
@@ -92,10 +97,6 @@ Taipei.Game.prototype = {
 		aPosit[2] = aPosit[2].sort( function ( a, b ) { return a.x - b.x; } );
 		aPosit[2] = aPosit[2].sort( function ( a, b ) { return b.y - a.y; } );
 
-		// Setting the background image
-		this.add.sprite(0, 0, "background");
-
-		tilesGroup = this.add.group();
 		var TileByFloor = this.playableTile;
 		var alreadyFrame = new Array();
 
@@ -117,22 +118,25 @@ Taipei.Game.prototype = {
 			for (var i = 0; i < TileByFloor; i++)
 				{
 				var frame = parseInt(this.tilesList[j].frame);
-				var tile = tilesGroup.create(aPosit[z][j].x, aPosit[z][j].y, "tiles");
+				var tile = this.tilesGroup.create(aPosit[z][j].x, aPosit[z][j].y, "tiles");
 				tile.inputEnabled = true;
 				tile.input.useHandCursor = true;
 				tile.floor = z;
 				tile.frame = frame;
 				tile.id = j;
 				tile.posit = aPosit[z][j].i;
+				tile.events.onInputUp.add(this.matching, this);
 				j--;
+
 				var frame = parseInt(this.tilesList[j].frame);
-				var tile = tilesGroup.create(aPosit[z][j].x, aPosit[z][j].y, "tiles");
+				var tile = this.tilesGroup.create(aPosit[z][j].x, aPosit[z][j].y, "tiles");
 				tile.inputEnabled = true;
 				tile.input.useHandCursor = true;
 				tile.floor = z;
 				tile.frame = frame;
 				tile.id = j;
 				tile.posit = aPosit[z][j].i;
+				tile.events.onInputUp.add(this.matching, this);
 				j--;
 				}
 			}
@@ -145,8 +149,6 @@ Taipei.Game.prototype = {
 		buttonRestart.onInputUp.add(this.restartGame, this);
 
 		this.shuffleTiles();
-
-		tilesGroup.callAll("events.onInputDown.add", "events.onInputDown", this.matching);
 
 		// About
 		if (this.splash==true)
@@ -301,16 +303,16 @@ Taipei.Game.prototype = {
 			}
 
 		var aOriginTile = new Array();
-		for (var i = 0; i < tilesGroup.children.length; i++)
+		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
-			aOriginTile.push({frame: tilesGroup.children[i].frame});
+			aOriginTile.push({frame: this.tilesGroup.children[i].frame});
 			}
 
 		aOriginTile = shuffle(aOriginTile);
 
-		for (var i = 0; i < tilesGroup.children.length; i++)
+		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
-			tilesGroup.children[i].frame = aOriginTile[i].frame;
+			this.tilesGroup.children[i].frame = aOriginTile[i].frame;
 			}
 		},
 
@@ -354,10 +356,10 @@ Taipei.Game.prototype = {
 
 		if (canBeSelected==true)
 			{
-			for (var i=0;i<tilesGroup.length;i++)
+			for (var i=0;i<this.tilesGroup.length;i++)
 				{
-				var tileAboveCurrentX = tilesGroup.children[i].position.x;
-				var tileAboveCurrentY = tilesGroup.children[i].position.y;
+				var tileAboveCurrentX = this.tilesGroup.children[i].position.x;
+				var tileAboveCurrentY = this.tilesGroup.children[i].position.y;
 				if (
 						(
 							tileAboveCurrentX >= tile.position.x + 5 &&
@@ -388,7 +390,7 @@ Taipei.Game.prototype = {
 					aPosit[tile.floor][tile.posit].destroy = 1;
 					aPosit[this.lastTile.floor][this.lastTile.posit].destroy = 1;
 
-					if (tilesGroup.children.length / 2==0)
+					if (this.tilesGroup.children.length / 2==0)
 						{
 						var toastShadow = game.add.graphics();
 						toastShadow.beginFill(0x000000, 0.4);
