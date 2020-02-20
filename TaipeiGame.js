@@ -318,15 +318,49 @@ Taipei.Game.prototype = {
 
 	matching: function(tile)
 		{
-		var canBeSelected = true;
+		if (this.canBeSelected(tile)==true)
+			{
+			tile.tint = 9999999;
 
-		floor = tile.floor;
-		posit = tile.id;
-		index = tile.posit;
-		leftTile = parseInt(index - 1);
-		rightTile = parseInt(index + 1);
-		haveTileLeft = false;
-		haveTileRight = false;
+			if (this.lastTile != null)
+				{
+				if ((this.lastTile.frame == tile.frame) && (this.lastTile.z != tile.z))
+					{
+					this.lastTile.destroy();
+					tile.destroy();
+					this.aPosit[tile.floor][tile.posit].destroy = 1;
+					this.aPosit[this.lastTile.floor][this.lastTile.posit].destroy = 1;
+					this.checkGameStatus();
+					}
+					else
+					{
+					tile.tint = 16777215;
+					if (this.lastTile!=null)
+						{
+						this.lastTile.tint = 16777215;
+						}
+					}
+				this.lastTile = null;
+				}
+			else
+				{
+				this.lastTile = tile;
+				tile.tint = 9999999;
+				}
+			}
+		},
+
+	canBeSelected: function(tile)
+		{
+		var finalAnswer = true;
+
+		var floor = tile.floor;
+		var posit = tile.id;
+		var index = tile.posit;
+		var leftTile = parseInt(index - 1);
+		var rightTile = parseInt(index + 1);
+		var haveTileLeft = false;
+		var haveTileRight = false;
 
 		if (this.aPosit[floor][posit].haveTileLeft)
 			{
@@ -340,21 +374,21 @@ Taipei.Game.prototype = {
 
 		if (!haveTileLeft || !haveTileRight)
 			{
-			canBeSelected = true;
+			finalAnswer = true;
 			}
 			else
 			{
 			if ((this.aPosit[floor][leftTile].destroy === 1) || (this.aPosit[floor][rightTile].destroy === 1))
 				{
-				canBeSelected = true;
+				finalAnswer = true;
 				}
 				else
 				{
-				canBeSelected = false;
+				finalAnswer = false;
 				}
 			}
 
-		if (canBeSelected==true)
+		if (finalAnswer==true)
 			{
 			for (var i=0;i<this.tilesGroup.length;i++)
 				{
@@ -372,51 +406,26 @@ Taipei.Game.prototype = {
 						)
 					)
 					{
-					canBeSelected = false;
+					finalAnswer = false;
 					}
 				}
 			}
 
-		if (canBeSelected==true)
+		return finalAnswer;
+		},
+
+	checkGameStatus: function ()
+		{
+		if (this.tilesGroup.children.length / 2==0)
 			{
-			tile.tint = 9999999;
-
-			if (this.lastTile != null)
-				{
-				if ((this.lastTile.frame == tile.frame) && (this.lastTile.z != tile.z))
-					{
-					this.lastTile.destroy();
-					tile.destroy();
-					this.aPosit[tile.floor][tile.posit].destroy = 1;
-					this.aPosit[this.lastTile.floor][this.lastTile.posit].destroy = 1;
-
-					if (this.tilesGroup.children.length / 2==0)
-						{
-						var toastShadow = game.add.graphics();
-						toastShadow.beginFill(0x000000, 0.4);
-						var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
-						var randomMessage = this.messages[randomNumber];
-						var toastText = game.add.text(0, 0, randomMessage, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
-						toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-						toastText.setTextBounds(0, 380, 800, 55);
-						toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
-						}
-					}
-					else
-					{
-					tile.tint = 16777215;
-					if (this.lastTile!=null)
-						{
-						this.lastTile.tint = 16777215;
-						}
-					}
-				this.lastTile = null;
-				}
-			else
-				{
-				this.lastTile = tile;
-				tile.tint = 9999999;
-				}
+			var toastShadow = game.add.graphics();
+			toastShadow.beginFill(0x000000, 0.4);
+			var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
+			var randomMessage = this.messages[randomNumber];
+			var toastText = game.add.text(0, 0, randomMessage, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+			toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
+			toastText.setTextBounds(0, 380, 800, 55);
+			toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
 			}
 		},
 
