@@ -396,8 +396,8 @@ Taipei.Game.prototype = {
 						var toastShadow = game.add.graphics();
 						toastShadow.beginFill(0x000000, 0.4);
 						var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
-						var randomAnswer = this.messages[randomNumber];
-						var toastText = game.add.text(0, 0, randomAnswer, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+						var randomMessage = this.messages[randomNumber];
+						var toastText = game.add.text(0, 0, randomMessage, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 						toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
 						toastText.setTextBounds(0, 380, 800, 55);
 						toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
