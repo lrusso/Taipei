@@ -288,27 +288,27 @@ Taipei.Game.prototype = {
 			}
 		},
 
+	shuffle: function(array)
+		{
+		for (var i = array.length - 1; i > 0; i--)
+			{
+			var j = Math.floor(Math.random() * (i + 1));
+			var temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+			}
+		return array;
+		},
+
 	shuffleTiles: function ()
 		{
-		function shuffle(array)
-			{
-			for (var i = array.length - 1; i > 0; i--)
-				{
-				var j = Math.floor(Math.random() * (i + 1));
-				var temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-				}
-			return array;
-			}
-
 		var aOriginTile = new Array();
 		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
 			aOriginTile.push({frame: this.tilesGroup.children[i].frame});
 			}
 
-		aOriginTile = shuffle(aOriginTile);
+		aOriginTile = this.shuffle(aOriginTile);
 
 		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
@@ -427,6 +427,39 @@ Taipei.Game.prototype = {
 			toastText.setTextBounds(0, 380, 800, 55);
 			toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
 			}
+			else
+			{
+			var pendingTiles = [];
+			for (var i=0; i < this.tilesGroup.length; i++)
+				{
+				if (this.canBeSelected(this.tilesGroup.children[i])==true)
+					{
+					pendingTiles.push(this.tilesGroup.children[i].frame);
+					}
+				}
+
+			if (this.isGameOver(pendingTiles)==true)
+				{
+				var toastShadow = game.add.graphics();
+				toastShadow.beginFill(0x000000, 0.4);
+				var toastText = game.add.text(0, 0, "Game Over", { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+				toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
+				toastText.setTextBounds(0, 380, 800, 55);
+				toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 383, toastText._width + 23, 46, 10);
+				}
+			}
+		},
+
+	isGameOver: function(myArray)
+		{
+		for (var i = 0; i < myArray.length; i++) 
+			{
+			if (myArray.indexOf(myArray[i]) !== myArray.lastIndexOf(myArray[i]))
+				{
+				return false;
+				}
+			}
+		return true;
 		},
 
 	update: function ()
