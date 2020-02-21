@@ -222,8 +222,8 @@ Taipei.Game.prototype = {
 				indBcl = indBcl * 2;
 				}
 
-			x = ((middle_left - (this.nbTileToMiddle * (this.tileWidth-7))) + ((this.tileWidth-7) * floor)) + (floor * 8);
-			y = ((middle_top - (this.nbTileToMiddle * (this.tileHeight-7))) + ((this.tileHeight-7) * floor)) - (floor * 8);
+			x = ((middle_left - (this.nbTileToMiddle * (this.tileWidth-7))) + ((this.tileWidth-8) * floor)) + (floor * 8);
+			y = ((middle_top - (this.nbTileToMiddle * (this.tileHeight-7))) + ((this.tileHeight-6) * floor)) - (floor * 8);
 
 			for (var i = 0; i < (indBcl * 2); i++)
 				{
