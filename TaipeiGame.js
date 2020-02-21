@@ -354,61 +354,60 @@ Taipei.Game.prototype = {
 		{
 		var finalAnswer = true;
 
-		var floor = tile.floor;
-		var posit = tile.id;
-		var index = tile.posit;
-		var leftTile = parseInt(index - 1);
-		var rightTile = parseInt(index + 1);
-		var haveTileLeft = false;
-		var haveTileRight = false;
+		var tileAtLeft = false;
+		var tileAtRight = false;
+		var tileAbove = false;
 
-		if (this.aPosit[floor][posit].haveTileLeft)
+		for (var i=0;i<this.tilesGroup.length;i++)
 			{
-			haveTileLeft = this.aPosit[floor][posit].haveTileLeft;
-			}
+			var tileForCheckingX = this.tilesGroup.children[i].position.x;
+			var tileForCheckingY = this.tilesGroup.children[i].position.y;
 
-		if (this.aPosit[floor][posit].haveTileRight)
-			{
-			haveTileRight = this.aPosit[floor][posit].haveTileRight;
-			}
-
-		if (!haveTileLeft || !haveTileRight)
-			{
-			finalAnswer = true;
-			}
-			else
-			{
-			if ((this.aPosit[floor][leftTile].destroy === 1) || (this.aPosit[floor][rightTile].destroy === 1))
+			// check 1
+			if (this.tilesGroup.children[i].floor==tile.floor)
 				{
-				finalAnswer = true;
+				if (this.tilesGroup.children[i].id!=tile.id)
+					{
+
+					if (tileForCheckingX>= tile.position.x - this.tileWidth - 7 &&
+						tileForCheckingX<= tile.position.x &&
+						tileForCheckingY== tile.position.y)
+						{
+						tileAtLeft = true;
+						}
+
+					if (tileForCheckingX<= tile.position.x + this.tileWidth + 7 &&
+						tileForCheckingX>= tile.position.x &&
+						tileForCheckingY== tile.position.y)
+						{
+						tileAtRight = true;
+						}
+					}
 				}
-				else
-				{
-				finalAnswer = false;
-				}
-			}
 
-		if (finalAnswer==true)
-			{
-			for (var i=0;i<this.tilesGroup.length;i++)
+			// check 2
+			if (this.tilesGroup.children[i].floor>tile.floor)
 				{
-				var tileAboveCurrentX = this.tilesGroup.children[i].position.x;
-				var tileAboveCurrentY = this.tilesGroup.children[i].position.y;
 				if (
 						(
-							tileAboveCurrentX >= tile.position.x + 5 &&
-							tileAboveCurrentX <= tile.position.x + 10
+							tileForCheckingX >= tile.position.x + 5 &&
+							tileForCheckingX <= tile.position.x + 10
 						)
 						&&
 						(
-							tileAboveCurrentY >= tile.position.y - 10 &&
-							tileAboveCurrentY <= tile.position.y - 5
+							tileForCheckingY >= tile.position.y - 10 &&
+							tileForCheckingY <= tile.position.y - 5
 						)
 					)
 					{
-					finalAnswer = false;
+					tileAbove = true;
 					}
 				}
+			}
+
+		if ((tileAtLeft==true && tileAtRight==true) || tileAbove==true)
+			{
+			finalAnswer = false;
 			}
 
 		return finalAnswer;
