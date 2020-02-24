@@ -13,7 +13,7 @@ Taipei.Preloader.prototype = {
 		this.game.renderer.renderSession.roundPixels = false;
 
 		var scaleX = window.innerWidth / 757;
-		var scaleY = window.innerHeight / 545;
+		var scaleY = window.innerHeight / 490;
 		var scale = Math.min(scaleX, scaleY);
 		this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 		this.scale.setUserScale(scale, scale);
@@ -59,7 +59,7 @@ Taipei.Game = function (game)
 	function resizeF()
 		{
 		var scaleX = window.innerWidth / 757;
-		var scaleY = window.innerHeight / 545;
+		var scaleY = window.innerHeight / 490;
 		var scale = Math.min(scaleX, scaleY);
 		game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 		game.scale.setUserScale(scale, scale);
@@ -103,8 +103,8 @@ Taipei.Game.prototype = {
 			toastShadow.beginFill(0x000000, 0.75);
 			var toastText = game.add.text(0, 0, "Designed by www.lrusso.com", { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 			toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-			toastText.setTextBounds(0, 480, 800, 55);
-			toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 483, toastText._width + 23, 46, 10);
+			toastText.setTextBounds(0, 420, 800, 55);
+			toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 423, toastText._width + 23, 46, 10);
 			setTimeout(function()
 				{
 				game.add.tween(toastShadow).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
@@ -161,158 +161,158 @@ Taipei.Game.prototype = {
 		this.tileLayout = [];
 
 		// floor 0 (87 tiles)
-		this.tileLayout.push({x: 580, y: 38});
-		this.tileLayout.push({x: 534, y: 38});
-		this.tileLayout.push({x: 488, y: 38});
-		this.tileLayout.push({x: 442, y: 38});
-		this.tileLayout.push({x: 396, y: 38});
-		this.tileLayout.push({x: 350, y: 38});
-		this.tileLayout.push({x: 304, y: 38});
-		this.tileLayout.push({x: 258, y: 38});
-		this.tileLayout.push({x: 212, y: 38});
-		this.tileLayout.push({x: 166, y: 38});
-		this.tileLayout.push({x: 120, y: 38});
-		this.tileLayout.push({x: 74,  y: 38});
-		this.tileLayout.push({x: 488, y: 96});
-		this.tileLayout.push({x: 442, y: 96});
-		this.tileLayout.push({x: 396, y: 96});
-		this.tileLayout.push({x: 350, y: 96});
-		this.tileLayout.push({x: 304, y: 96});
-		this.tileLayout.push({x: 258, y: 96});
-		this.tileLayout.push({x: 212, y: 96});
-		this.tileLayout.push({x: 166, y: 96});
-		this.tileLayout.push({x: 534, y: 154});
-		this.tileLayout.push({x: 488, y: 154});
-		this.tileLayout.push({x: 442, y: 154});
-		this.tileLayout.push({x: 396, y: 154});
-		this.tileLayout.push({x: 350, y: 154});
-		this.tileLayout.push({x: 304, y: 154});
-		this.tileLayout.push({x: 258, y: 154});
-		this.tileLayout.push({x: 212, y: 154});
-		this.tileLayout.push({x: 166, y: 154});
-		this.tileLayout.push({x: 120, y: 154});
-		this.tileLayout.push({x: 672, y: 240});
-		this.tileLayout.push({x: 626, y: 240});
-		this.tileLayout.push({x: 580, y: 212});
-		this.tileLayout.push({x: 534, y: 212});
-		this.tileLayout.push({x: 488, y: 212});
-		this.tileLayout.push({x: 442, y: 212});
-		this.tileLayout.push({x: 396, y: 212});
-		this.tileLayout.push({x: 350, y: 212});
-		this.tileLayout.push({x: 304, y: 212});
-		this.tileLayout.push({x: 258, y: 212});
-		this.tileLayout.push({x: 212, y: 212});
-		this.tileLayout.push({x: 166, y: 212});
-		this.tileLayout.push({x: 120, y: 212});
-		this.tileLayout.push({x: 74,  y: 212});
-		this.tileLayout.push({x: 580, y: 270});
-		this.tileLayout.push({x: 534, y: 270});
-		this.tileLayout.push({x: 488, y: 270});
-		this.tileLayout.push({x: 442, y: 270});
-		this.tileLayout.push({x: 396, y: 270});
-		this.tileLayout.push({x: 350, y: 270});
-		this.tileLayout.push({x: 304, y: 270});
-		this.tileLayout.push({x: 258, y: 270});
-		this.tileLayout.push({x: 212, y: 270});
-		this.tileLayout.push({x: 166, y: 270});
-		this.tileLayout.push({x: 120, y: 270});
-		this.tileLayout.push({x: 74,  y: 270});
-		this.tileLayout.push({x: 534, y: 328});
-		this.tileLayout.push({x: 488, y: 328});
-		this.tileLayout.push({x: 442, y: 328});
-		this.tileLayout.push({x: 396, y: 328});
-		this.tileLayout.push({x: 350, y: 328});
-		this.tileLayout.push({x: 304, y: 328});
-		this.tileLayout.push({x: 258, y: 328});
-		this.tileLayout.push({x: 212, y: 328});
-		this.tileLayout.push({x: 166, y: 328});
-		this.tileLayout.push({x: 120, y: 328});
-		this.tileLayout.push({x: 488, y: 386});
-		this.tileLayout.push({x: 442, y: 386});
-		this.tileLayout.push({x: 396, y: 386});
-		this.tileLayout.push({x: 350, y: 386});
-		this.tileLayout.push({x: 304, y: 386});
-		this.tileLayout.push({x: 258, y: 386});
-		this.tileLayout.push({x: 212, y: 386});
-		this.tileLayout.push({x: 166, y: 386});
-		this.tileLayout.push({x: 580, y: 444});
-		this.tileLayout.push({x: 534, y: 444});
-		this.tileLayout.push({x: 488, y: 444});
-		this.tileLayout.push({x: 442, y: 444});
-		this.tileLayout.push({x: 396, y: 444});
-		this.tileLayout.push({x: 350, y: 444});
-		this.tileLayout.push({x: 304, y: 444});
-		this.tileLayout.push({x: 258, y: 444});
-		this.tileLayout.push({x: 212, y: 444});
-		this.tileLayout.push({x: 166, y: 444});
-		this.tileLayout.push({x: 120, y: 444});
-		this.tileLayout.push({x: 74,  y: 444});
-		this.tileLayout.push({x: 28, y: 240});
+		this.tileLayout.push({x: 580, y: 8});
+		this.tileLayout.push({x: 534, y: 8});
+		this.tileLayout.push({x: 488, y: 8});
+		this.tileLayout.push({x: 442, y: 8});
+		this.tileLayout.push({x: 396, y: 8});
+		this.tileLayout.push({x: 350, y: 8});
+		this.tileLayout.push({x: 304, y: 8});
+		this.tileLayout.push({x: 258, y: 8});
+		this.tileLayout.push({x: 212, y: 8});
+		this.tileLayout.push({x: 166, y: 8});
+		this.tileLayout.push({x: 120, y: 8});
+		this.tileLayout.push({x: 74,  y: 8});
+		this.tileLayout.push({x: 488, y: 66});
+		this.tileLayout.push({x: 442, y: 66});
+		this.tileLayout.push({x: 396, y: 66});
+		this.tileLayout.push({x: 350, y: 66});
+		this.tileLayout.push({x: 304, y: 66});
+		this.tileLayout.push({x: 258, y: 66});
+		this.tileLayout.push({x: 212, y: 66});
+		this.tileLayout.push({x: 166, y: 66});
+		this.tileLayout.push({x: 534, y: 124});
+		this.tileLayout.push({x: 488, y: 124});
+		this.tileLayout.push({x: 442, y: 124});
+		this.tileLayout.push({x: 396, y: 124});
+		this.tileLayout.push({x: 350, y: 124});
+		this.tileLayout.push({x: 304, y: 124});
+		this.tileLayout.push({x: 258, y: 124});
+		this.tileLayout.push({x: 212, y: 124});
+		this.tileLayout.push({x: 166, y: 124});
+		this.tileLayout.push({x: 120, y: 124});
+		this.tileLayout.push({x: 672, y: 210});
+		this.tileLayout.push({x: 626, y: 210});
+		this.tileLayout.push({x: 580, y: 182});
+		this.tileLayout.push({x: 534, y: 182});
+		this.tileLayout.push({x: 488, y: 182});
+		this.tileLayout.push({x: 442, y: 182});
+		this.tileLayout.push({x: 396, y: 182});
+		this.tileLayout.push({x: 350, y: 182});
+		this.tileLayout.push({x: 304, y: 182});
+		this.tileLayout.push({x: 258, y: 182});
+		this.tileLayout.push({x: 212, y: 182});
+		this.tileLayout.push({x: 166, y: 182});
+		this.tileLayout.push({x: 120, y: 182});
+		this.tileLayout.push({x: 74,  y: 182});
+		this.tileLayout.push({x: 580, y: 240});
+		this.tileLayout.push({x: 534, y: 240});
+		this.tileLayout.push({x: 488, y: 240});
+		this.tileLayout.push({x: 442, y: 240});
+		this.tileLayout.push({x: 396, y: 240});
+		this.tileLayout.push({x: 350, y: 240});
+		this.tileLayout.push({x: 304, y: 240});
+		this.tileLayout.push({x: 258, y: 240});
+		this.tileLayout.push({x: 212, y: 240});
+		this.tileLayout.push({x: 166, y: 240});
+		this.tileLayout.push({x: 120, y: 240});
+		this.tileLayout.push({x: 74,  y: 240});
+		this.tileLayout.push({x: 534, y: 298});
+		this.tileLayout.push({x: 488, y: 298});
+		this.tileLayout.push({x: 442, y: 298});
+		this.tileLayout.push({x: 396, y: 298});
+		this.tileLayout.push({x: 350, y: 298});
+		this.tileLayout.push({x: 304, y: 298});
+		this.tileLayout.push({x: 258, y: 298});
+		this.tileLayout.push({x: 212, y: 298});
+		this.tileLayout.push({x: 166, y: 298});
+		this.tileLayout.push({x: 120, y: 298});
+		this.tileLayout.push({x: 488, y: 356});
+		this.tileLayout.push({x: 442, y: 356});
+		this.tileLayout.push({x: 396, y: 356});
+		this.tileLayout.push({x: 350, y: 356});
+		this.tileLayout.push({x: 304, y: 356});
+		this.tileLayout.push({x: 258, y: 356});
+		this.tileLayout.push({x: 212, y: 356});
+		this.tileLayout.push({x: 166, y: 356});
+		this.tileLayout.push({x: 580, y: 414});
+		this.tileLayout.push({x: 534, y: 414});
+		this.tileLayout.push({x: 488, y: 414});
+		this.tileLayout.push({x: 442, y: 414});
+		this.tileLayout.push({x: 396, y: 414});
+		this.tileLayout.push({x: 350, y: 414});
+		this.tileLayout.push({x: 304, y: 414});
+		this.tileLayout.push({x: 258, y: 414});
+		this.tileLayout.push({x: 212, y: 414});
+		this.tileLayout.push({x: 166, y: 414});
+		this.tileLayout.push({x: 120, y: 414});
+		this.tileLayout.push({x: 74,  y: 414});
+		this.tileLayout.push({x: 28, y: 210});
 
 		// floor 1 (36 tiles)
-		this.tileLayout.push({x: 449, y: 89});
-		this.tileLayout.push({x: 403, y: 89});
-		this.tileLayout.push({x: 357, y: 89});
-		this.tileLayout.push({x: 311, y: 89});
-		this.tileLayout.push({x: 265, y: 89});
-		this.tileLayout.push({x: 219, y: 89});
-		this.tileLayout.push({x: 449, y: 147});
-		this.tileLayout.push({x: 403, y: 147});
-		this.tileLayout.push({x: 357, y: 147});
-		this.tileLayout.push({x: 311, y: 147});
-		this.tileLayout.push({x: 265, y: 147});
-		this.tileLayout.push({x: 219, y: 147});
-		this.tileLayout.push({x: 449, y: 205});
-		this.tileLayout.push({x: 403, y: 205});
-		this.tileLayout.push({x: 357, y: 205});
-		this.tileLayout.push({x: 311, y: 205});
-		this.tileLayout.push({x: 265, y: 205});
-		this.tileLayout.push({x: 219, y: 205});
-		this.tileLayout.push({x: 449, y: 263});
-		this.tileLayout.push({x: 403, y: 263});
-		this.tileLayout.push({x: 357, y: 263});
-		this.tileLayout.push({x: 311, y: 263});
-		this.tileLayout.push({x: 265, y: 263});
-		this.tileLayout.push({x: 219, y: 263});
-		this.tileLayout.push({x: 449, y: 321});
-		this.tileLayout.push({x: 403, y: 321});
-		this.tileLayout.push({x: 357, y: 321});
-		this.tileLayout.push({x: 311, y: 321});
-		this.tileLayout.push({x: 265, y: 321});
-		this.tileLayout.push({x: 219, y: 321});
-		this.tileLayout.push({x: 449, y: 379});
-		this.tileLayout.push({x: 403, y: 379});
-		this.tileLayout.push({x: 357, y: 379});
-		this.tileLayout.push({x: 311, y: 379});
-		this.tileLayout.push({x: 265, y: 379});
-		this.tileLayout.push({x: 219, y: 379});
+		this.tileLayout.push({x: 449, y: 59});
+		this.tileLayout.push({x: 403, y: 59});
+		this.tileLayout.push({x: 357, y: 59});
+		this.tileLayout.push({x: 311, y: 59});
+		this.tileLayout.push({x: 265, y: 59});
+		this.tileLayout.push({x: 219, y: 59});
+		this.tileLayout.push({x: 449, y: 117});
+		this.tileLayout.push({x: 403, y: 117});
+		this.tileLayout.push({x: 357, y: 117});
+		this.tileLayout.push({x: 311, y: 117});
+		this.tileLayout.push({x: 265, y: 117});
+		this.tileLayout.push({x: 219, y: 117});
+		this.tileLayout.push({x: 449, y: 175});
+		this.tileLayout.push({x: 403, y: 175});
+		this.tileLayout.push({x: 357, y: 175});
+		this.tileLayout.push({x: 311, y: 175});
+		this.tileLayout.push({x: 265, y: 175});
+		this.tileLayout.push({x: 219, y: 175});
+		this.tileLayout.push({x: 449, y: 233});
+		this.tileLayout.push({x: 403, y: 233});
+		this.tileLayout.push({x: 357, y: 233});
+		this.tileLayout.push({x: 311, y: 233});
+		this.tileLayout.push({x: 265, y: 233});
+		this.tileLayout.push({x: 219, y: 233});
+		this.tileLayout.push({x: 449, y: 291});
+		this.tileLayout.push({x: 403, y: 291});
+		this.tileLayout.push({x: 357, y: 291});
+		this.tileLayout.push({x: 311, y: 291});
+		this.tileLayout.push({x: 265, y: 291});
+		this.tileLayout.push({x: 219, y: 291});
+		this.tileLayout.push({x: 449, y: 349});
+		this.tileLayout.push({x: 403, y: 349});
+		this.tileLayout.push({x: 357, y: 349});
+		this.tileLayout.push({x: 311, y: 349});
+		this.tileLayout.push({x: 265, y: 349});
+		this.tileLayout.push({x: 219, y: 349});
 
 		// floor 2 (16 tiles)
-		this.tileLayout.push({x: 410, y: 140});
-		this.tileLayout.push({x: 364, y: 140});
-		this.tileLayout.push({x: 318, y: 140});
-		this.tileLayout.push({x: 272, y: 140});
-		this.tileLayout.push({x: 410, y: 198});
-		this.tileLayout.push({x: 364, y: 198});
-		this.tileLayout.push({x: 318, y: 198});
-		this.tileLayout.push({x: 272, y: 198});
-		this.tileLayout.push({x: 410, y: 256});
-		this.tileLayout.push({x: 364, y: 256});
-		this.tileLayout.push({x: 318, y: 256});
-		this.tileLayout.push({x: 272, y: 256});
-		this.tileLayout.push({x: 410, y: 314});
-		this.tileLayout.push({x: 364, y: 314});
-		this.tileLayout.push({x: 318, y: 314});
-		this.tileLayout.push({x: 272, y: 314});
+		this.tileLayout.push({x: 410, y: 110});
+		this.tileLayout.push({x: 364, y: 110});
+		this.tileLayout.push({x: 318, y: 110});
+		this.tileLayout.push({x: 272, y: 110});
+		this.tileLayout.push({x: 410, y: 168});
+		this.tileLayout.push({x: 364, y: 168});
+		this.tileLayout.push({x: 318, y: 168});
+		this.tileLayout.push({x: 272, y: 168});
+		this.tileLayout.push({x: 410, y: 226});
+		this.tileLayout.push({x: 364, y: 226});
+		this.tileLayout.push({x: 318, y: 226});
+		this.tileLayout.push({x: 272, y: 226});
+		this.tileLayout.push({x: 410, y: 284});
+		this.tileLayout.push({x: 364, y: 284});
+		this.tileLayout.push({x: 318, y: 284});
+		this.tileLayout.push({x: 272, y: 284});
 
 		// floor 3 (4 tiles)
-		this.tileLayout.push({x: 371, y: 191});
-		this.tileLayout.push({x: 325, y: 191});
-		this.tileLayout.push({x: 371, y: 249});
-		this.tileLayout.push({x: 325, y: 249});
+		this.tileLayout.push({x: 371, y: 161});
+		this.tileLayout.push({x: 325, y: 161});
+		this.tileLayout.push({x: 371, y: 219});
+		this.tileLayout.push({x: 325, y: 219});
 
 		// floor 4 (1 tiles)
-		this.tileLayout.push({x: 352, y: 217});
+		this.tileLayout.push({x: 352, y: 187});
 		},
 
 	drawTiles: function()
@@ -447,23 +447,23 @@ Taipei.Game.prototype = {
 				}
 
 			// check 3 (for the left corner tile)
-			if ((tile.position.x==74 && tile.position.y==212) || (tile.position.x==74 && tile.position.y==270)
-				&& tileForCheckingX==28 && tileForCheckingY==240
+			if ((tile.position.x==74 && tile.position.y==182) || (tile.position.x==74 && tile.position.y==240)
+				&& tileForCheckingX==28 && tileForCheckingY==210
 				)
 				{
 				tileAtLeft = true;
 				}
 
 			// check 4 (for the right corner tile)
-			if ((tile.position.x==580 && tile.position.y==212) || (tile.position.x==580 && tile.position.y==270)
-				&& tileForCheckingX==626 && tileForCheckingY==240
+			if ((tile.position.x==580 && tile.position.y==182) || (tile.position.x==580 && tile.position.y==240)
+				&& tileForCheckingX==626 && tileForCheckingY==210
 				)
 				{
 				tileAtRight = true;
 				}
 
 			// check 5 (for the right corner tile)
-			if (tile.position.x==626 && tile.position.y==240 && tileForCheckingX==672 && tileForCheckingY==240)
+			if (tile.position.x==626 && tile.position.y==210 && tileForCheckingX==672 && tileForCheckingY==210)
 				{
 				tileAtLeft = true;
 				}
@@ -493,8 +493,8 @@ Taipei.Game.prototype = {
 			var randomMessage = this.messages[randomNumber];
 			var toastText = game.add.text(0, 0, randomMessage, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 			toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-			toastText.setTextBounds(0, 480, 800, 55);
-			toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 483, toastText._width + 23, 46, 10);
+			toastText.setTextBounds(0, 420, 800, 55);
+			toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 423, toastText._width + 23, 46, 10);
 			}
 			else
 			{
@@ -513,8 +513,8 @@ Taipei.Game.prototype = {
 				toastShadow.beginFill(0x000000, 0.4);
 				var toastText = game.add.text(0, 0, "No free tiles", { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 				toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-				toastText.setTextBounds(0, 480, 800, 55);
-				toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 483, toastText._width + 23, 46, 10);
+				toastText.setTextBounds(0, 420, 800, 55);
+				toastShadow.drawRoundedRect(800 / 2 - toastText._width / 2 - 11, 423, toastText._width + 23, 46, 10);
 				}
 			}
 		},
@@ -544,7 +544,7 @@ Taipei.Game.prototype = {
 		}
 	};
 
-var game = new Phaser.Game(757, 545, Phaser.WEBGL, "game", null, false, true);
+var game = new Phaser.Game(757, 490, Phaser.WEBGL, "game", null, false, true);
 game.state.add("Taipei.Preloader", Taipei.Preloader);
 game.state.add("Taipei.Game", Taipei.Game);
 game.state.start("Taipei.Preloader");
