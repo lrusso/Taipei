@@ -378,7 +378,7 @@ Taipei.Game.prototype = {
 		{
 		if (this.canBeSelected(tile)==true)
 			{
-			tile.tint = 9999999;
+			tile.tint = 0x98967F;
 
 			if (this.lastTile != null)
 				{
@@ -390,10 +390,10 @@ Taipei.Game.prototype = {
 					}
 					else
 					{
-					tile.tint = 16777215;
+					tile.tint = 0xFFFFFF;
 					if (this.lastTile!=null)
 						{
-						this.lastTile.tint = 16777215;
+						this.lastTile.tint = 0xFFFFFF;
 						}
 					}
 				this.lastTile = null;
@@ -401,7 +401,7 @@ Taipei.Game.prototype = {
 			else
 				{
 				this.lastTile = tile;
-				tile.tint = 9999999;
+				tile.tint = 0x98967F;
 				}
 			}
 		},
