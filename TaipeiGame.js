@@ -447,7 +447,7 @@ Taipei.Game.prototype = {
 				}
 
 			// check 3 (for the left corner tile)
-			if ((tile.position.x==74 && tile.position.y==182) || (tile.position.x==74 && tile.position.y==240)
+			if (((tile.position.x==74 && tile.position.y==182) || (tile.position.x==74 && tile.position.y==240))
 				&& tileForCheckingX==28 && tileForCheckingY==210
 				)
 				{
@@ -455,7 +455,7 @@ Taipei.Game.prototype = {
 				}
 
 			// check 4 (for the right corner tile)
-			if ((tile.position.x==580 && tile.position.y==182) || (tile.position.x==580 && tile.position.y==240)
+			if (((tile.position.x==580 && tile.position.y==182) || (tile.position.x==580 && tile.position.y==240))
 				&& tileForCheckingX==626 && tileForCheckingY==210
 				)
 				{
