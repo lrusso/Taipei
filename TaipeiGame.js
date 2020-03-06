@@ -540,7 +540,7 @@ Taipei.Game.prototype = {
 		if (this.tilesGroup.children.length / 2 == 0)
 			{
 			var toastShadow = game.add.graphics();
-			toastShadow.beginFill(0x000000, 0.4);
+			toastShadow.beginFill(0x000000, 0.75);
 			var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
 			var randomMessage = this.messages[randomNumber];
 			var toastText = game.add.text(0, 0, randomMessage, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
@@ -562,7 +562,7 @@ Taipei.Game.prototype = {
 			if (this.isGameOver(pendingTiles)==true)
 				{
 				var toastShadow = game.add.graphics();
-				toastShadow.beginFill(0x000000, 0.4);
+				toastShadow.beginFill(0x000000, 0.75);
 				var toastText = game.add.text(0, 0, "No free tiles", { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 				toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
 				toastText.setTextBounds(0, 420, 800, 55);
