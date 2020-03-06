@@ -173,7 +173,6 @@ Taipei.Game.prototype = {
 					}
 					catch(err)
 					{
-					alert(err);
 					}
 				}, 1000);
 			}
@@ -377,30 +376,25 @@ Taipei.Game.prototype = {
 		{
 		var tileLayoutIndex = 0;
 
-		for (var z = 0; z <5; z++)
+		for (var i = 143; i > -1; i--)
 			{
+			var frame = parseInt(this.tilesList[i].frame);
+			var tile = this.tilesGroup.create(this.tileLayout[tileLayoutIndex].x, this.tileLayout[tileLayoutIndex].y, "tiles");
+			tile.inputEnabled = true;
+			tile.input.useHandCursor = true;
 
-			if (z==0){j = 87;}
-			if (z==1){j = 36;}
-			if (z==2){j = 16;}
-			if (z==3){j = 4;}
-			if (z==4){j = 1;}
+			if (i>=57)      {tile.floor = 0}
+			else if (i>=21) {tile.floor = 1}
+			else if (i>=5)  {tile.floor = 2}
+			else if (i>=1)  {tile.floor = 3}
+			else if (i>=0)  {tile.floor = 4}
 
-			for (var i = 0; i < j*999; i++)
-				{
-				var frame = parseInt(this.tilesList[j].frame);
-				var tile = this.tilesGroup.create(this.tileLayout[tileLayoutIndex].x, this.tileLayout[tileLayoutIndex].y, "tiles");
-				tile.inputEnabled = true;
-				tile.input.useHandCursor = true;
-				tile.floor = z;
-				tile.frame = frame;
-				tile.id = j;
-				tile.posit = tileLayoutIndex;
-				tile.events.onInputUp.add(this.matching, this);
-				j--;
+			tile.frame = frame;
+			tile.id = i;
+			tile.posit = tileLayoutIndex;
+			tile.events.onInputUp.add(this.matching, this);
 
-				tileLayoutIndex = tileLayoutIndex + 1;
-				}
+			tileLayoutIndex = tileLayoutIndex + 1;
 			}
 		},
 
