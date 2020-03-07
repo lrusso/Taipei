@@ -79,8 +79,8 @@ Taipei.Game.prototype = {
 
 	create: function ()
 		{
-		// Setting the background image
-		this.stage.backgroundColor = "#026851";
+		// Setting the background color
+		this.stage.backgroundColor = "#024f3e";
 
 		this.tilesGroup = this.add.group();
 
