@@ -18,6 +18,7 @@ Taipei.Preloader.prototype = {
 		this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 		this.scale.setUserScale(scale, scale);
 		this.scale.pageAlignHorizontally = true;
+		this.scale.pageAlignVertically = true;
 		this.scale.refresh();
 		},
 
@@ -64,6 +65,7 @@ Taipei.Game = function (game)
 		game.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
 		game.scale.setUserScale(scale, scale);
 		game.scale.pageAlignHorizontally = true;
+		game.scale.pageAlignVertically = true;
 		game.scale.refresh();
 		}
 
