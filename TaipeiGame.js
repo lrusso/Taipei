@@ -596,7 +596,7 @@ Taipei.Game.prototype = {
 		}
 	};
 
-var config = {width: 757, height: 490, renderer: Phaser.WEBGL, parent: "content", disableVisibilityChange: true, preserveDrawingBuffer: true};
+var config = {width: 757, height: 490, renderer: Phaser.WEBGL, parent: "content", disableVisibilityChange: true};
 var game = new Phaser.Game(config);
 game.state.add("Taipei.Preloader", Taipei.Preloader);
 game.state.add("Taipei.Game", Taipei.Game);
