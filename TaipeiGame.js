@@ -91,17 +91,17 @@ Taipei.Game.prototype = {
 		this.drawTiles();
 		this.shuffleTiles();
 
-		var buttonRestartShadow = game.add.sprite(29, 29, "restart");
+		var buttonRestartShadow = game.add.sprite(731, 29, "restart");
 		buttonRestartShadow.anchor.set(0.5);
 		buttonRestartShadow.tint = 0x000000;
 		buttonRestartShadow.alpha = 0.7;
-		var buttonRestart = this.add.button(3, 3, "restart", null, this, 2, 1, 0);
+		var buttonRestart = this.add.button(705, 3, "restart", null, this, 2, 1, 0);
 		buttonRestart.onInputUp.add(this.restartGame, this);
 
-		var buttonHintShadow = game.add.sprite(707, 5, "hint");
+		var buttonHintShadow = game.add.sprite(5, 5, "hint");
 		buttonHintShadow.tint = 0x000000;
 		buttonHintShadow.alpha = 0.7;
-		var buttonHint = this.add.button(705, 3, "hint", null, this, 2, 1, 0);
+		var buttonHint = this.add.button(3, 3, "hint", null, this, 2, 1, 0);
 		buttonHint.onInputUp.add(this.hintGame, this);
 
 		// About
