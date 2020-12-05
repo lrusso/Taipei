@@ -55,6 +55,11 @@ Taipei.Game = function (game)
 	this.tilesGroup = null;
 	this.tileLayout = null;
 
+	this.buttonHint = null;
+	this.buttonHintShadow = null;
+	this.buttonRestart = null;
+	this.buttonRestartShadow = null;
+
 	this.messages = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight.  Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good -- use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Congratulations on winning Taipei!", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 
 	function resizeF()
@@ -91,18 +96,18 @@ Taipei.Game.prototype = {
 		this.drawTiles();
 		this.shuffleTiles();
 
-		var buttonRestartShadow = game.add.sprite(731, 29, "restart");
-		buttonRestartShadow.anchor.set(0.5);
-		buttonRestartShadow.tint = 0x000000;
-		buttonRestartShadow.alpha = 0.7;
-		var buttonRestart = this.add.button(705, 3, "restart", null, this, 2, 1, 0);
-		buttonRestart.onInputUp.add(this.restartGame, this);
+		this.buttonRestartShadow = game.add.sprite(731, 29, "restart");
+		this.buttonRestartShadow.anchor.set(0.5);
+		this.buttonRestartShadow.tint = 0x000000;
+		this.buttonRestartShadow.alpha = 0.7;
+		this.buttonRestart = this.add.button(705, 3, "restart", null, this, 2, 1, 0);
+		this.buttonRestart.onInputUp.add(this.restartGame, this);
 
-		var buttonHintShadow = game.add.sprite(5, 5, "hint");
-		buttonHintShadow.tint = 0x000000;
-		buttonHintShadow.alpha = 0.7;
-		var buttonHint = this.add.button(3, 3, "hint", null, this, 2, 1, 0);
-		buttonHint.onInputUp.add(this.hintGame, this);
+		this.buttonHintShadow = game.add.sprite(5, 5, "hint");
+		this.buttonHintShadow.tint = 0x000000;
+		this.buttonHintShadow.alpha = 0.7;
+		this.buttonHint = this.add.button(3, 3, "hint", null, this, 2, 1, 0);
+		this.buttonHint.onInputUp.add(this.hintGame, this);
 
 		// About
 		if (this.splash==true)
