@@ -41,9 +41,9 @@ Taipei.Preloader.prototype = {
 
 Taipei.Game = function (game)
 	{
-	this.splash = true;
-	this.splashText = null;
-	this.splashShadow = null;
+	this.toast = true;
+	this.toastText = null;
+	this.toastShadow = null;
 
 	this.width = 800;
 	this.height = 432;
@@ -112,10 +112,10 @@ Taipei.Game.prototype = {
 		this.buttonHint.onInputUp.add(this.hintGame, this);
 
 		// About
-		if (this.splash==true)
+		if (this.toast==true)
 			{
-			this.showSplash("Designed by www.lrusso.com",true);
-			this.splash = false;
+			this.showToast("Designed by www.lrusso.com",true);
+			this.toast = false;
 			}
 		},
 
@@ -537,7 +537,7 @@ Taipei.Game.prototype = {
 		if (this.tilesGroup.children.length / 2 == 0)
 			{
 			var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
-			this.showSplash(this.messages[randomNumber], false);
+			this.showToast(this.messages[randomNumber], false);
 			}
 			else
 			{
@@ -552,7 +552,7 @@ Taipei.Game.prototype = {
 
 			if (this.isGameOver(pendingTiles)==true)
 				{
-				this.showSplash("No free tiles", false);
+				this.showToast("No free tiles", false);
 				}
 			}
 		},
@@ -569,21 +569,21 @@ Taipei.Game.prototype = {
 		return true;
 		},
 
-	showSplash: function(myText, mustFade)
+	showToast: function(myText, mustFade)
 		{
-		this.splashShadow = game.add.graphics();
-		this.splashShadow.beginFill(0x000000, 0.75);
-		this.splashText = game.add.text(0, 0, myText, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
-		this.splashText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-		this.splashText.setTextBounds(0, 420, 800, 55);
-		this.splashShadow.drawRoundedRect(800 / 2 - this.splashText._width / 2 - 11, 423, this.splashText._width + 23, 46, 10);
+		this.toastShadow = game.add.graphics();
+		this.toastShadow.beginFill(0x000000, 0.75);
+		this.toastText = game.add.text(0, 0, myText, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+		this.toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
+		this.toastText.setTextBounds(0, 420, 800, 55);
+		this.toastShadow.drawRoundedRect(800 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
 
 		if (mustFade==true)
 			{
 			setTimeout(function()
 				{
-				game.add.tween(game.state.states["Taipei.Game"].splashShadow).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
-				game.add.tween(game.state.states["Taipei.Game"].splashText).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
+				game.add.tween(game.state.states["Taipei.Game"].toastShadow).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
+				game.add.tween(game.state.states["Taipei.Game"].toastText).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
 				}, 3000);
 			}
 		},
