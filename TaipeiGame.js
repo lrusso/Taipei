@@ -62,6 +62,8 @@ Taipei.Game = function (game)
 	this.buttonHint = null;
 	this.buttonHintShadow = null;
 
+	this.hintRequested = false;
+
 	this.messages = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight.  Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good -- use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Congratulations on winning Taipei!", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 
 	function resizeF()
@@ -88,16 +90,19 @@ Taipei.Game.prototype = {
 
 	create: function ()
 		{
-		// Setting the background color
+		// SETTING THE BACKGROUND COLOR
 		this.stage.backgroundColor = "#024f3e";
 
+		// ADDING THE TILES GROUP
 		this.tilesGroup = this.add.group();
 
+		// GENERATING THE TILES
 		this.generateTileList();
 		this.generateLayout();
 		this.drawTiles();
 		this.shuffleTiles();
 
+		// ADDING THE RESTART BUTTON
 		this.buttonRestartShadow = game.add.sprite(731, 29, "restart");
 		this.buttonRestartShadow.anchor.set(0.5);
 		this.buttonRestartShadow.tint = 0x000000;
@@ -105,6 +110,7 @@ Taipei.Game.prototype = {
 		this.buttonRestart = this.add.button(705, 3, "restart", null, this, 2, 1, 0);
 		this.buttonRestart.onInputUp.add(this.restartGame, this);
 
+		// ADDING THE HINT BUTTON
 		this.buttonHintShadow = game.add.sprite(5, 5, "hint");
 		this.buttonHintShadow.tint = 0x000000;
 		this.buttonHintShadow.alpha = 0.7;
@@ -128,50 +134,56 @@ Taipei.Game.prototype = {
 
 	hintGame: function()
 		{
-		var tileSuggested1 = null;
-		var tileSuggested2 = null;
-
-		for (var i=0;i<this.tilesGroup.length;i++)
+		if (this.hintRequested==false)
 			{
-			if (tileSuggested2==null)
-				{
-				tileSuggested1 = this.tilesGroup.children[i];
+			this.hintRequested = true;
 
-				if (this.canBeSelected(tileSuggested1)==true)
+			var tileSuggested1 = null;
+			var tileSuggested2 = null;
+
+			for (var i=0;i<this.tilesGroup.length;i++)
+				{
+				if (tileSuggested2==null)
 					{
-					for (var j=0;j<this.tilesGroup.length;j++)
+					tileSuggested1 = this.tilesGroup.children[i];
+
+					if (this.canBeSelected(tileSuggested1)==true)
 						{
-						if (j!=i && tileSuggested2==null)
+						for (var j=0;j<this.tilesGroup.length;j++)
 							{
-							if (this.canBeSelected(this.tilesGroup.children[j])==true)
+							if (j!=i && tileSuggested2==null)
 								{
-								if (tileSuggested1.frame==this.tilesGroup.children[j].frame)
+								if (this.canBeSelected(this.tilesGroup.children[j])==true)
 									{
-									tileSuggested2 = this.tilesGroup.children[j];
+									if (tileSuggested1.frame==this.tilesGroup.children[j].frame)
+										{
+										tileSuggested2 = this.tilesGroup.children[j];
+										}
 									}
 								}
 							}
 						}
 					}
 				}
-			}
 
-		if (tileSuggested2!=null)
-			{
-			tileSuggested1.tint = 0x98967F;
-			tileSuggested2.tint = 0x98967F;
-
-			setTimeout(function()
+			if (tileSuggested2!=null)
 				{
-				try
+				tileSuggested1.tint = 0x98967F;
+				tileSuggested2.tint = 0x98967F;
+
+				setTimeout(function()
 					{
-					if (tileSuggested1!=game.state.states["Taipei.Game"].lastTile){tileSuggested1.tint = 0xFFFFFF}
-					if (tileSuggested2!=game.state.states["Taipei.Game"].lastTile){tileSuggested2.tint = 0xFFFFFF}
-					}
-					catch(err)
-					{
-					}
-				}, 1000);
+					try
+						{
+						game.state.states["Taipei.Game"].hintRequested = false;
+						if (tileSuggested1!=game.state.states["Taipei.Game"].lastTile){tileSuggested1.tint = 0xFFFFFF}
+						if (tileSuggested2!=game.state.states["Taipei.Game"].lastTile){tileSuggested2.tint = 0xFFFFFF}
+						}
+						catch(err)
+						{
+						}
+					}, 1000);
+				}
 			}
 		},
 
