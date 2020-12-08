@@ -621,8 +621,13 @@ Taipei.Game.prototype = {
 		}
 	};
 
+// CREATING THE GAME INSTANCE
 var config = {width: 757, height: 490, renderer: Phaser.WEBGL, parent: "content", disableVisibilityChange: true};
 var game = new Phaser.Game(config);
+
+// CREATING THE STATES
 game.state.add("Taipei.Preloader", Taipei.Preloader);
 game.state.add("Taipei.Game", Taipei.Game);
+
+// STARTING THE GAME PRELOADER
 game.state.start("Taipei.Preloader");
