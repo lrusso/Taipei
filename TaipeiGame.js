@@ -581,25 +581,6 @@ Taipei.Game.prototype = {
 		return true;
 		},
 
-	showToast: function(myText, mustFade)
-		{
-		this.toastShadow = game.add.graphics();
-		this.toastShadow.beginFill(0x000000, 0.75);
-		this.toastText = game.add.text(0, 0, myText, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
-		this.toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-		this.toastText.setTextBounds(0, 420, 800, 55);
-		this.toastShadow.drawRoundedRect(800 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
-
-		if (mustFade==true)
-			{
-			setTimeout(function()
-				{
-				game.add.tween(game.state.states["Taipei.Game"].toastShadow).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
-				game.add.tween(game.state.states["Taipei.Game"].toastText).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
-				}, 3000);
-			}
-		},
-
 	update: function ()
 		{
 		},
@@ -610,6 +591,33 @@ Taipei.Game.prototype = {
 
 	render: function ()
 		{
+		},
+
+	showToast: function(myText, mustFade)
+		{
+		// CREATING THE TOAST SHADOW
+		this.toastShadow = game.add.graphics();
+		this.toastShadow.beginFill(0x000000, 0.75);
+
+		// CREATING THE TOAST TEXT
+		this.toastText = game.add.text(0, 0, myText, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
+		this.toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
+		this.toastText.setTextBounds(0, 420, 800, 55);
+
+		// DRAWING THE TOAST SHADOW
+		this.toastShadow.drawRoundedRect(800 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
+
+		// CHECKING IF THE TOAST MUST FADE OUT
+		if (mustFade==true)
+			{
+			// SETTING THAT IN 3 SECONDS THE TOAST MUST FADE OUT
+			setTimeout(function()
+				{
+				// FADING OUT THE TOAST SHADOW AND TEXT
+				game.add.tween(game.state.states["Taipei.Game"].toastShadow).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
+				game.add.tween(game.state.states["Taipei.Game"].toastText).to({alpha: 0}, 500, Phaser.Easing.Linear.None, true);
+				}, 3000);
+			}
 		}
 	};
 
