@@ -661,24 +661,35 @@ Taipei.Game.prototype = {
 
 	checkGameStatus: function ()
 		{
+		// CHECKING IF THERE ARE NO MORE TILES
 		if (this.tilesGroup.children.length / 2 == 0)
 			{
+			// GETTING A RANDOM NUMBER
 			var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
+
+			// SHOWING A MESSAGE BECAUSE THE USER WON
 			this.showToast(this.messages[randomNumber], false);
 			}
 			else
 			{
+			// CREATING A VARIABLE FOR THE PENDING TILES
 			var pendingTiles = [];
+
+			// LOOPING THE TILESGROUP
 			for (var i=0; i < this.tilesGroup.length; i++)
 				{
+				// CHECK IF THE TILE CAN BE SELECTED
 				if (this.canBeSelected(this.tilesGroup.children[i])==true)
 					{
+					// ADDING THE TILE TO THE PENDING TILES
 					pendingTiles.push(this.tilesGroup.children[i].frame);
 					}
 				}
 
+			// CHECKING IF THE GAME IS OVER
 			if (this.isGameOver(pendingTiles)==true)
 				{
+				// SHOWING THE GAME OVER MESSAGE
 				this.showToast(STRING_NOFREETILES, false);
 				}
 			}
