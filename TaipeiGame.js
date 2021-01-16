@@ -6,17 +6,59 @@ var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
 var STRING_ABOUT = "";
 var STRING_NOFREETILES = "";
+var STRING_MESSAGES = [];
 
 // CHECKING THE USER LANGUAGE
 if (userLanguage.substring(0,2)=="es")
 	{
 	STRING_ABOUT = "Dise" + String.fromCharCode(241) + "ado por www.lrusso.com";
 	STRING_NOFREETILES = "No quedan fichas libres";
+	STRING_MESSAGES = [
+						"Asistir" + String.fromCharCode(225) + "s a una fiesta donde imperar" + String.fromCharCode(225) + "n costumbres extra" + String.fromCharCode(241) + "as.",
+						"Una visita con amigos probará ser una ocasión agradable.",
+						"Nuevas experiencias extrañas se sumarán a su alegría de vivir.",
+						"La expresión de agradecimiento de otra persona te encantará.",
+						"Momentos memorables harán su viaje placentero.",
+						"Un feliz reencuentro aguarda su llegada.",
+						"Escuche a su corazón y proceda con confianza.",
+						"Hagas lo que hagas, hazlo divertido.",
+						"Un objetivo secreto está a la vista. Resiste.",
+						"A través de los ojos del amor, todo tendrá un nuevo significado.",
+						"Te relajarás en el regazo del lujo.",
+						"Conócete a ti mismo para que puedas entender a los demás.",
+						"Nuevas experiencias y nuevos amigos enriquecerán tu vida.",
+						"Lo que haces con sinceridad paga la mayor recompensa.",
+						"Un regalo inesperado se sumará a tu placer.",
+						"Tu confianza en una amistad resultará bien fundada.",
+						"La preocupación de las demás hará que tu viaje sea una delicia.",
+						"Una oferta inesperada merece una seria consideración.",
+						"Una nueva amistad ayudará a lanzar un hechizo.",
+						"Fuerzas invisibles están trabajando a tu favor.",
+						"Una oferta inusual mejorará su futuro.",
+						"Afronte un nuevo desafío con tranquilidad y seguridad.",
+						"Dentro de ti reside el poder para el bien, úsalo.",
+						"Todas las pequeñas cosas se sumarán a un feliz viaje.",
+						"Sea bienvenida la oportunidad de aprender sobre los demás.",
+						"La preocupación por la felicidad de un amigo mejorará la tuya.",
+						"Ten paciencia y la respuesta será revelada.",
+						"Viaja con un corazón alegre y expectativas felices.",
+						"Serás colmado de atención.",
+						"Vale la pena seguir ese pensamiento fugaz.",
+						"Una mano amiga te acerca a una meta secreta.",
+						"Mantén la calma y la compostura, y todo encajará.",
+						"Acepta la siguiente propuesta que escuches.",
+						"¿Has encontrado el antiguo secreto de Taipei?",
+						"¿Por qué no presionas recargar y jugar de nuevo?",
+						"Dondequiera que vayas, ahí estarás.",
+						"La pelota hinchable es la fuente de toda bondad y luz.",
+						"¡Felicitaciones por ganar Taipei!"
+					];
 	}
 	else
 	{
 	STRING_ABOUT = "Designed by www.lrusso.com";
 	STRING_NOFREETILES = "No free tiles";
+	STRING_MESSAGES = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight. Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good, use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 	}
 
 var Taipei = {showDebug: false};
@@ -85,8 +127,6 @@ Taipei.Game = function (game)
 	this.buttonHintShadow = null;
 
 	this.hintRequested = false;
-
-	this.messages = ["You will attend a party where strange customs prevail.", "A visit with friends will prove an enjoyable occasion.", "Strange new experiences will add to your joy of living.", "Another's expression of appreciation will delight you.", "Memorable moments will make your trip delightful.", "A joyful reunion awaits your arrival.", "Listen to your heart and proceed with confidence.", "Whatever you do, make it fun.", "A secret goal is in sight.  Hang in there.", "Through eyes of love all things will take on a new meaning.", "You will relax in the lap of luxury.", "Know yourself so that you might understand others.", "New experiences and new friends will enrich your life.", "What you do with sincerity pays the greatest reward.", "An unexpected gift will add to your pleasure.", "Your trust in a friend will prove well-founded.", "The concern of others will make your trip a delight.", "Unexpected offer deserves serious consideration.", "A new friendship will help cast a spell of enchantment.", "Unseen forces are working in your favor.", "Unusual offer will enhance your future.", "Meet a new challenge with calm assurance.", "Within you lies the power for good -- use it.", "All the little things will add to a happy journey.", "Welcome the chance to learn about others.", "Concern for a friend's happiness will enhance your own.", "Be patient, and the answer will be revealed.", "Travel with a light heart and happy expectations.", "You will be showered by attention.", "That fleeting thought is worth pursuing.", "A helping hand brings you closer to a secret goal.", "Stay calm, cool, and collected, and all things will fall into place.", "Accept the next proposition you hear.", "Congratulations on winning Taipei!", "Have you found the ancient Taipei secret?", "Why not hit reload and play again?", "Wherever you go, there you are.", "Bouncy ball is the source of all goodness and light.", "Congratulations on winning Taipei!"];
 
 	// SCALING THE CANVAS SIZE FOR THE GAME
 	function resizeF()
@@ -665,10 +705,10 @@ Taipei.Game.prototype = {
 		if (this.tilesGroup.children.length / 2 == 0)
 			{
 			// GETTING A RANDOM NUMBER
-			var randomNumber = Math.floor(Math.random() * (38 - 0 + 1) + 0);
+			var randomNumber = Math.floor(Math.random() * (37 - 0 + 1) + 0);
 
 			// SHOWING A MESSAGE BECAUSE THE USER WON
-			this.showToast(this.messages[randomNumber], false);
+			this.showToast(STRING_MESSAGES[randomNumber], false);
 			}
 			else
 			{
@@ -730,10 +770,10 @@ Taipei.Game.prototype = {
 		// CREATING THE TOAST TEXT
 		this.toastText = game.add.text(0, 0, myText, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 		this.toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-		this.toastText.setTextBounds(0, 420, 800, 55);
+		this.toastText.setTextBounds(0, 420, 757, 55);
 
 		// DRAWING THE TOAST SHADOW
-		this.toastShadow.drawRoundedRect(800 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
+		this.toastShadow.drawRoundedRect(757 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
 
 		// CHECKING IF THE TOAST MUST FADE OUT
 		if (mustFade==true)
