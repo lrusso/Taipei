@@ -247,11 +247,13 @@ Taipei.Game.prototype = {
 
 	generateTileList: function ()
 		{
+		// ADDING THE HASVALUE METHOD TO THE ARRAY PROTOTYPE
 		Array.prototype.hasValue = function(value)
 			{
-			var i;
-			for (i=0; i<this.length; i++)
+			// LOOPING THE ARRAY
+			for (var i = 0; i<this.length; i++)
 				{
+				// CHECKING IF THE ARRAY IS THE SAME AS VALUE
 				if (this[i] === value)
 					{
 					return true;
@@ -260,23 +262,35 @@ Taipei.Game.prototype = {
 			return false;
 			}
 
-		var alreadyFrame = new Array();
+		// CREATING AN ARRAY FOR HANDLING THE FRAMES (PICTURES)
+		var matchingTileList = new Array();
 
+		// LOOPING ALL THE AVAILABLE TILES
 		for (var i = 0; i < 72; i++)
 			{
+			// CREATING A VARIABLE THAT WILL CONTAIN THE FRAME (PICTURE VALUE)
+			var frame;
+
 			do
 				{
-				if (alreadyFrame.length >= this.nbTile)
+				// CHECKING IF ALL THE MATCHINGTILELIST IS LARGER THAN THE TILELIST
+				if (matchingTileList.length >= this.nbTile)
 					{
-					alreadyFrame = new Array();
+					// CLEARING THE MATCHINGTILELIST
+					matchingTileList = new Array();
 					}
-				var frame = parseInt(Math.random() * this.nbTile);
-				}
-			while (alreadyFrame.hasValue(frame) != false);
 
-			alreadyFrame.push(frame);
-			var a = {"frame": frame};
-			this.tilesList.push(a, a);
+				// GETTING A FRAME (PICTURE VALUE) USING A RANDOM LOCATION
+				frame = parseInt(Math.random() * this.nbTile);
+				}
+			// LOOPING UNTIL THE THE MATCHINGTILELIST HASN'T A MATCH
+			while (matchingTileList.hasValue(frame) != false);
+
+			// PUSHING THE FRAME VALUE
+			matchingTileList.push(frame);
+
+			// ADDING THE FRAME PAIR TO THE TILES LIST
+			this.tilesList.push({"frame": frame},{"frame": frame});
 			}
 		},
 
