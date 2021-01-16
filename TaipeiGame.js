@@ -532,32 +532,48 @@ Taipei.Game.prototype = {
 
 	matching: function(tile)
 		{
+		// CHECKING IF THE TILE CAN BE SELECTED
 		if (this.canBeSelected(tile)==true)
 			{
+			// SELECTING THE TILE
 			tile.tint = 0x98967F;
 
+			// CHECKING IF ANOTHER TILE WAS SELECTED
 			if (this.lastTile != null)
 				{
-				if ((this.lastTile.frame == tile.frame) && (this.lastTile.z != tile.z))
+				// CHECKING IF THE SELECTED TILES HAVE THE SAME FRAME (PICTURE) AND THAT ARE NOT THE SAME TILE INDEX
+				if (this.lastTile.frame == tile.frame && this.lastTile.z != tile.z)
 					{
-					this.lastTile.destroy();
+					// DESTROYING THE TILES
 					tile.destroy();
+					this.lastTile.destroy();
+
+					// CHECKING THE GAME STATUS
 					this.checkGameStatus();
 					}
 					else
 					{
+					// CLEARING THE TILE SELECTION
 					tile.tint = 0xFFFFFF;
+
+					// CHECKING IF ANOTHER TILE WAS SELECTED
 					if (this.lastTile!=null)
 						{
+						// CLEARING THE ANOTHER TILE SELECTION
 						this.lastTile.tint = 0xFFFFFF;
 						}
 					}
+
+				// CLEARING THE LAST TILE REFERENCE
 				this.lastTile = null;
 				}
 			else
 				{
-				this.lastTile = tile;
+				// SELECTING THE TILE
 				tile.tint = 0x98967F;
+
+				// SETTING THE LAST TILE REFERENCE
+				this.lastTile = tile;
 				}
 			}
 		},
