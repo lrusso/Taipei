@@ -580,19 +580,22 @@ Taipei.Game.prototype = {
 
 	canBeSelected: function(tile)
 		{
+		// SETTING THE DEFAULT ANSWER
 		var finalAnswer = true;
 
+		// SETTING THE DEFAULT VALUE FOR TILE CHECKING
 		var tileAtLeft = false;
 		var tileAtRight = false;
 		var tileAbove = false;
 
+		// LOOPING ALL THE TILES
 		for (var i=0;i<this.tilesGroup.length;i++)
 			{
-
+			// GETTING THE TILE X AND Y VALUES
 			var tileForCheckingX = this.tilesGroup.children[i].position.x;
 			var tileForCheckingY = this.tilesGroup.children[i].position.y;
 
-			// check 1 (for every tile)
+			// CHECK 1 - FOR EVERY TILE
 			if (this.tilesGroup.children[i].id!=tile.id)
 				{
 
@@ -611,14 +614,14 @@ Taipei.Game.prototype = {
 					}
 				}
 
-			// check 2 (for every tile)
+			// CHECK 2 - FOR EVERY TILE
 			if ((tileForCheckingX >= tile.position.x + 5 && tileForCheckingX <= tile.position.x + 10) &&
 				(tileForCheckingY >= tile.position.y - 10 && tileForCheckingY <= tile.position.y - 5))
 				{
 				tileAbove = true;
 				}
 
-			// check 3 (for the left corner tile)
+			// CHECK 3 - FOR THE LEFT CORNER TILE
 			if (((tile.position.x==74 && tile.position.y==182) || (tile.position.x==74 && tile.position.y==240))
 				&& tileForCheckingX==28 && tileForCheckingY==210
 				)
@@ -626,7 +629,7 @@ Taipei.Game.prototype = {
 				tileAtLeft = true;
 				}
 
-			// check 4 (for the right corner tile)
+			// CHECK 4 - FOR THE RIGHT CORNER TILE
 			if (((tile.position.x==580 && tile.position.y==182) || (tile.position.x==580 && tile.position.y==240))
 				&& tileForCheckingX==626 && tileForCheckingY==210
 				)
@@ -634,19 +637,20 @@ Taipei.Game.prototype = {
 				tileAtRight = true;
 				}
 
-			// check 5 (for the right corner tile)
+			// CHECK 5 - FOR THE RIGHT CORNER TILE
 			if (tile.position.x==626 && tile.position.y==210 && tileForCheckingX==672 && tileForCheckingY==210)
 				{
 				tileAtLeft = true;
 				}
 
-			// check 6 (for the 3th floor only)
+			// CHECK 6 - FOR THE 3TH FLOOR ONLY
 			if(tile.floor==3 && this.tilesGroup.children[i].floor==4)
 				{
 				tileAbove = true;
 				}
 			}
 
+		// CHECKING IF THE TILE IS BLOCKED IN ANY DIRECTION
 		if ((tileAtLeft==true && tileAtRight==true) || tileAbove==true)
 			{
 			finalAnswer = false;
