@@ -153,37 +153,58 @@ Taipei.Game.prototype = {
 
 	restartGame: function ()
 		{
+		// RESTARTING THE STATE
 		this.state.restart();
+
+		// CLEARING THE LAST TILE
 		this.lastTile = null;
+
+		// CLEARING THE TILE LIST
 		this.tilesList = new Array();
 		},
 
 	hintGame: function()
 		{
+		// CHECKING IF THE HINT IS NOT REQUESTED
 		if (this.hintRequested==false)
 			{
+			// SETTING THAT THE HINT WAS REQUESTED
 			this.hintRequested = true;
 
+			// CREATING THE VARIABLE THAT WILL CONTAIN THE SUGGESTED TILE PAIR
 			var tileSuggested1 = null;
 			var tileSuggested2 = null;
 
+			// CHECKING ALL THE TILES
 			for (var i=0;i<this.tilesGroup.length;i++)
 				{
+				// CHECKING IF THE SECOND TILE (PAIR) WAS NOT FOUND
 				if (tileSuggested2==null)
 					{
+					// UPDATING THE FIRST TILE VALUE
 					tileSuggested1 = this.tilesGroup.children[i];
 
+					// CHECKING IF THE FIRST TILE VALUE CAN BE SELECTED
 					if (this.canBeSelected(tileSuggested1)==true)
 						{
+						// CHECKING ALL THE TILES
 						for (var j=0;j<this.tilesGroup.length;j++)
 							{
-							if (j!=i && tileSuggested2==null)
+							// CHECKING IF THE SECOND TILE IS NOT THE SAME AS FIRST TILE
+							if (j!=i)
 								{
-								if (this.canBeSelected(this.tilesGroup.children[j])==true)
+								// CHECKING IF THE SECOND TILE (PAIR) WAS NOT FOUND
+								if (tileSuggested2==null)
 									{
-									if (tileSuggested1.frame==this.tilesGroup.children[j].frame)
+									// CHECKING IF THE SECOND TILE CAN BE SELECTED
+									if (this.canBeSelected(this.tilesGroup.children[j])==true)
 										{
-										tileSuggested2 = this.tilesGroup.children[j];
+										// CHECKING IF THE FIRST TILE HAS THE SAME FRAME (PICTURE) AS THE SECOND TILE
+										if (tileSuggested1.frame==this.tilesGroup.children[j].frame)
+											{
+											// SETTING THE SECOND TILE VALUE
+											tileSuggested2 = this.tilesGroup.children[j];
+											}
 										}
 									}
 								}
@@ -192,16 +213,22 @@ Taipei.Game.prototype = {
 					}
 				}
 
+			// CHECKING IF A SECOND TILE WAS FOUND
 			if (tileSuggested2!=null)
 				{
+				// SELECTING THE FIRST AND SECOND TILES
 				tileSuggested1.tint = 0x98967F;
 				tileSuggested2.tint = 0x98967F;
 
+				// SETTING THAT THE FIRST AND SECOND TILES WILL BE UNSELECTED AFTER A SECOND
 				setTimeout(function()
 					{
 					try
 						{
+						// SETTING THAT THE HINT WAS NOT REQUESTED
 						game.state.states["Taipei.Game"].hintRequested = false;
+
+						// CLEARING THE SELECTION FROM THE FIRST AND SECOND TILES
 						if (tileSuggested1!=game.state.states["Taipei.Game"].lastTile){tileSuggested1.tint = 0xFFFFFF}
 						if (tileSuggested2!=game.state.states["Taipei.Game"].lastTile){tileSuggested2.tint = 0xFFFFFF}
 						}
@@ -209,6 +236,11 @@ Taipei.Game.prototype = {
 						{
 						}
 					}, 1000);
+				}
+				else
+				{
+				// SETTING THAT THE HINT WAS NOT REQUESTED
+				this.hintRequested = false;
 				}
 			}
 		},
