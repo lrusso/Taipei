@@ -456,26 +456,40 @@ Taipei.Game.prototype = {
 
 	drawTiles: function()
 		{
+		// SETTING THE VARIABLE THAT WILL REFERENCE EACH TILE
 		var tileLayoutIndex = 0;
 
+		// LOOPING ALL THE TILES
 		for (var i = 143; i > -1; i--)
 			{
+			// GETTING THE TILELIST FRAME (PICTURE)
 			var frame = parseInt(this.tilesList[i].frame);
+
+			// CREATING THE TILE
 			var tile = this.tilesGroup.create(this.tileLayout[tileLayoutIndex].x, this.tileLayout[tileLayoutIndex].y, "tiles");
+
+			// SETTING THAT THE TILE HAS AN INPUT EVENT
 			tile.inputEnabled = true;
+
+			// SETTING THAT THE MOUSE CURSOR MUST BE DISPLAYED WHEN MOUSE OVER
 			tile.input.useHandCursor = true;
 
+			// CHECKING THE i VALUE FOR SETTING THE FLOOR NUMBER
 			if (i>=57)      {tile.floor = 0}
 			else if (i>=21) {tile.floor = 1}
 			else if (i>=5)  {tile.floor = 2}
 			else if (i>=1)  {tile.floor = 3}
 			else if (i>=0)  {tile.floor = 4}
 
+			// ADDING REFERENCIAL DATA TO THE TILE
 			tile.frame = frame;
 			tile.id = i;
 			tile.posit = tileLayoutIndex;
+
+			// SETTING WHAT FUNCTION WILL BE CALLED WHEN THE USER FINGERS/MOUSE UP A TILE
 			tile.events.onInputUp.add(this.matching, this);
 
+			// UPDATING THE TILE REFERENCE VALUE
 			tileLayoutIndex = tileLayoutIndex + 1;
 			}
 		},
@@ -644,7 +658,7 @@ Taipei.Game.prototype = {
 
 	isGameOver: function(myArray)
 		{
-		for (var i = 0; i < myArray.length; i++) 
+		for (var i = 0; i < myArray.length; i++)
 			{
 			if (myArray.indexOf(myArray[i]) !== myArray.lastIndexOf(myArray[i]))
 				{
