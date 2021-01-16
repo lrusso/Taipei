@@ -697,8 +697,10 @@ Taipei.Game.prototype = {
 
 	isGameOver: function(myArray)
 		{
+		// LOOPING ALL THE PENDING AND FREE TILES
 		for (var i = 0; i < myArray.length; i++)
 			{
+			// CHECKING IF THE TILE HAS A MATCH
 			if (myArray.indexOf(myArray[i]) !== myArray.lastIndexOf(myArray[i]))
 				{
 				return false;
