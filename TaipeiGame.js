@@ -496,6 +496,7 @@ Taipei.Game.prototype = {
 
 	shuffleTiles: function ()
 		{
+		// SHUFFLE FUNCTION
 		function shuffle(array)
 			{
 			for (var i = array.length - 1; i > 0; i--)
@@ -508,16 +509,23 @@ Taipei.Game.prototype = {
 			return array;
 			}
 
+		// CREATING THE ORIGINAL TILE ARRAY
 		var aOriginTile = new Array();
+
+		// LOOPING THE TILESGROUP
 		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
+			// ADDING EACH TILE TO THE ORIGINAL TILE ARRAY
 			aOriginTile.push({frame: this.tilesGroup.children[i].frame});
 			}
 
+		// SHUFFLING THE ORIGINAL TILE ARRAY
 		aOriginTile = shuffle(aOriginTile);
 
+		// LOOPING THE TILESGROUP
 		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
+			// UPDATING EACH TILE FRAME IN THE TILEGROUP WITH TILE FRAME OF THE SHUFFLED TILE ARRAY
 			this.tilesGroup.children[i].frame = aOriginTile[i].frame;
 			}
 		},
