@@ -296,9 +296,10 @@ Taipei.Game.prototype = {
 
 	generateLayout: function ()
 		{
+		// CLEARING THE TILE LAYOUT
 		this.tileLayout = [];
 
-		// floor 0 (87 tiles)
+		// ADDING THE FLOOR 0 (87 TILES)
 		this.tileLayout.push({x: 580, y: 8});
 		this.tileLayout.push({x: 534, y: 8});
 		this.tileLayout.push({x: 488, y: 8});
@@ -387,7 +388,7 @@ Taipei.Game.prototype = {
 		this.tileLayout.push({x: 74,  y: 414});
 		this.tileLayout.push({x: 28, y: 210});
 
-		// floor 1 (36 tiles)
+		// ADDING THE FLOOR 1 (36 TILES)
 		this.tileLayout.push({x: 449, y: 59});
 		this.tileLayout.push({x: 403, y: 59});
 		this.tileLayout.push({x: 357, y: 59});
@@ -425,7 +426,7 @@ Taipei.Game.prototype = {
 		this.tileLayout.push({x: 265, y: 349});
 		this.tileLayout.push({x: 219, y: 349});
 
-		// floor 2 (16 tiles)
+		// ADDING THE FLOOR 2 (16 TILES)
 		this.tileLayout.push({x: 410, y: 110});
 		this.tileLayout.push({x: 364, y: 110});
 		this.tileLayout.push({x: 318, y: 110});
@@ -443,13 +444,13 @@ Taipei.Game.prototype = {
 		this.tileLayout.push({x: 318, y: 284});
 		this.tileLayout.push({x: 272, y: 284});
 
-		// floor 3 (4 tiles)
+		// ADDING THE FLOOR 3 (4 TILES)
 		this.tileLayout.push({x: 371, y: 161});
 		this.tileLayout.push({x: 325, y: 161});
 		this.tileLayout.push({x: 371, y: 219});
 		this.tileLayout.push({x: 325, y: 219});
 
-		// floor 4 (1 tiles)
+		// ADDING THE FLOOR 4 (1 TILES)
 		this.tileLayout.push({x: 352, y: 187});
 		},
 
