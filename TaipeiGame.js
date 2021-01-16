@@ -13,46 +13,7 @@ if (userLanguage.substring(0,2)=="es")
 	{
 	STRING_ABOUT = "Dise" + String.fromCharCode(241) + "ado por www.lrusso.com";
 	STRING_NOFREETILES = "No quedan fichas libres";
-	STRING_MESSAGES = [
-						"Asistir" + String.fromCharCode(225) + "s a una fiesta donde imperar" + String.fromCharCode(225) + "n costumbres extra" + String.fromCharCode(241) + "as.",
-						"Una visita con amigos probará ser una ocasión agradable.",
-						"Nuevas experiencias extrañas se sumarán a su alegría de vivir.",
-						"La expresión de agradecimiento de otra persona te encantará.",
-						"Momentos memorables harán su viaje placentero.",
-						"Un feliz reencuentro aguarda su llegada.",
-						"Escuche a su corazón y proceda con confianza.",
-						"Hagas lo que hagas, hazlo divertido.",
-						"Un objetivo secreto está a la vista. Resiste.",
-						"A través de los ojos del amor, todo tendrá un nuevo significado.",
-						"Te relajarás en el regazo del lujo.",
-						"Conócete a ti mismo para que puedas entender a los demás.",
-						"Nuevas experiencias y nuevos amigos enriquecerán tu vida.",
-						"Lo que haces con sinceridad paga la mayor recompensa.",
-						"Un regalo inesperado se sumará a tu placer.",
-						"Tu confianza en una amistad resultará bien fundada.",
-						"La preocupación de las demás hará que tu viaje sea una delicia.",
-						"Una oferta inesperada merece una seria consideración.",
-						"Una nueva amistad ayudará a lanzar un hechizo.",
-						"Fuerzas invisibles están trabajando a tu favor.",
-						"Una oferta inusual mejorará su futuro.",
-						"Afronte un nuevo desafío con tranquilidad y seguridad.",
-						"Dentro de ti reside el poder para el bien, úsalo.",
-						"Todas las pequeñas cosas se sumarán a un feliz viaje.",
-						"Sea bienvenida la oportunidad de aprender sobre los demás.",
-						"La preocupación por la felicidad de un amigo mejorará la tuya.",
-						"Ten paciencia y la respuesta será revelada.",
-						"Viaja con un corazón alegre y expectativas felices.",
-						"Serás colmado de atención.",
-						"Vale la pena seguir ese pensamiento fugaz.",
-						"Una mano amiga te acerca a una meta secreta.",
-						"Mantén la calma y la compostura, y todo encajará.",
-						"Acepta la siguiente propuesta que escuches.",
-						"¿Has encontrado el antiguo secreto de Taipei?",
-						"¿Por qué no presionas recargar y jugar de nuevo?",
-						"Dondequiera que vayas, ahí estarás.",
-						"La pelota hinchable es la fuente de toda bondad y luz.",
-						"¡Felicitaciones por ganar Taipei!"
-					];
+	STRING_MESSAGES = ["Asistir" + String.fromCharCode(225) + "s a una fiesta donde imperar" + String.fromCharCode(225) + "n costumbres extra" + String.fromCharCode(241) + "as.", "Una visita con amigos probar" + String.fromCharCode(225) + " ser una ocasi" + String.fromCharCode(243) + "n agradable.", "Nuevas experiencias extra" + String.fromCharCode(241) + "as se sumar" + String.fromCharCode(225) + "n a su alegr" + String.fromCharCode(237) + "a de vivir.", "La expresi" + String.fromCharCode(243) + "n de agradecimiento de otra persona te encantar" + String.fromCharCode(225) + ".", "Momentos memorables har" + String.fromCharCode(225) + "n su viaje placentero.", "Un feliz reencuentro aguarda su llegada.", "Escuche a su coraz" + String.fromCharCode(243) + "n y proceda con confianza.", "Hagas lo que hagas, hazlo divertido.", "Un objetivo secreto est" + String.fromCharCode(225) + " a la vista. Resiste.", "A trav" + String.fromCharCode(233) + "s de los ojos del amor, todo tendr" + String.fromCharCode(225) + " un nuevo significado.", "Te relajar" + String.fromCharCode(225) + "s en el regazo del lujo.", "Con" + String.fromCharCode(243) + "cete a ti mismo para que puedas entender a los dem" + String.fromCharCode(225) + "s.", "Nuevas experiencias y nuevos amigos enriquecer" + String.fromCharCode(225) + "n tu vida.", "Lo que haces con sinceridad paga la mayor recompensa.", "Un regalo inesperado se sumar" + String.fromCharCode(225) + " a tu placer.", "Tu confianza en una amistad resultar" + String.fromCharCode(225) + " bien fundada.", "La preocupaci" + String.fromCharCode(243) + "n de las dem" + String.fromCharCode(225) + "s har" + String.fromCharCode(225) + " que tu viaje sea una delicia.", "Una oferta inesperada merece una seria consideraci" + String.fromCharCode(243) + "n.", "Una nueva amistad ayudar" + String.fromCharCode(225) + " a lanzar un hechizo.", "Fuerzas invisibles est" + String.fromCharCode(225) + "n trabajando a tu favor.", "Una oferta inusual mejorar" + String.fromCharCode(225) + " su futuro.", "Afronte un nuevo desaf" + String.fromCharCode(237) + "o con tranquilidad y seguridad.", "Dentro de ti reside el poder para el bien, " + String.fromCharCode(250) + "salo.", "Todas las peque" + String.fromCharCode(241) + "as cosas se sumar" + String.fromCharCode(225) + "n a un feliz viaje.", "Sea bienvenida la oportunidad de aprender sobre los dem" + String.fromCharCode(225) + "s.", "La preocupaci" + String.fromCharCode(243) + "n por la felicidad de un amigo mejorar" + String.fromCharCode(225) + " la tuya.", "Ten paciencia y la respuesta ser" + String.fromCharCode(225) + " revelada.", "Viaja con un coraz" + String.fromCharCode(243) + "n alegre y expectativas felices.", "Ser" + String.fromCharCode(225) + "s colmado de atenci" + String.fromCharCode(243) + "n.", "Vale la pena seguir ese pensamiento fugaz.", "Una mano amiga te acerca a una meta secreta.", "Mant" + String.fromCharCode(233) + "n la calma y la compostura, y todo encajar" + String.fromCharCode(225) + ".", "Acepta la siguiente propuesta que escuches.", String.fromCharCode(191) + "Has encontrado el antiguo secreto de Taipei?", String.fromCharCode(191) + "Por qu" + String.fromCharCode(233) + " no presionas recargar y jugar de nuevo?", "Dondequiera que vayas, ah" + String.fromCharCode(237) + " estar" + String.fromCharCode(225) + "s.", "La pelota hinchable es la fuente de toda bondad y luz.", String.fromCharCode(161) + "Felicitaciones por ganar Taipei!"];
 	}
 	else
 	{
@@ -770,10 +731,10 @@ Taipei.Game.prototype = {
 		// CREATING THE TOAST TEXT
 		this.toastText = game.add.text(0, 0, myText, { font: "bold 24px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" });
 		this.toastText.setShadow(3, 3, "rgba(0,0,0,0.5)", 2);
-		this.toastText.setTextBounds(0, 420, 757, 55);
+		this.toastText.setTextBounds(0, 420, 756, 55);
 
 		// DRAWING THE TOAST SHADOW
-		this.toastShadow.drawRoundedRect(757 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
+		this.toastShadow.drawRoundedRect(756 / 2 - this.toastText._width / 2 - 11, 423, this.toastText._width + 23, 46, 10);
 
 		// CHECKING IF THE TOAST MUST FADE OUT
 		if (mustFade==true)
