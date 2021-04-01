@@ -804,6 +804,7 @@ if (isWebGLAvailable()==false)
 	rendererMode = Phaser.CANVAS;
 	}
 
+// CREATING THE GAME INSTANCE
 var config = {width: 757, height: 490, renderer: rendererMode, parent: "content", disableVisibilityChange: true};
 var game = new Phaser.Game(config);
 
