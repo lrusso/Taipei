@@ -794,18 +794,18 @@ Taipei.Game.prototype = {
 		}
 	};
 
-// SETTING THE RENDERING MODE
-var renderMode = Phaser.WEBGL;
+// SETTING THE RENDERER MODE
+var rendererMode = Phaser.WEBGL;
 
 // CHECKING IF THE USER IS RUNNING IOS
 if (isUsingiOS()==true)
 	{
-	// CHANGING THE RENDERING MODE
-	renderMode = Phaser.CANVAS;
+	// CHANGING THE RENDERER MODE
+	rendererMode = Phaser.CANVAS;
 	}
 
 // CREATING THE GAME INSTANCE
-var config = {width: 757, height: 490, renderer: renderMode, parent: "content", disableVisibilityChange: false};
+var config = {width: 757, height: 490, renderer: rendererMode, parent: "content", disableVisibilityChange: false};
 var game = new Phaser.Game(config);
 
 // CREATING THE STATES
