@@ -234,6 +234,16 @@ Taipei.Game.prototype = {
 			// SETTING THAT THE HINT WAS REQUESTED
 			this.hintRequested = true;
 
+			// CHECKING IF ANOTHER TILE WAS SELECTED
+			if (this.lastTile!=null)
+				{
+				// CLEARING THE ANOTHER TILE SELECTION
+				this.lastTile.tint = 0xFFFFFF;
+
+				// CLEARING THE LAST TILE REFERENCE
+				this.lastTile = null;
+				}
+
 			// CREATING THE VARIABLE THAT WILL CONTAIN THE SUGGESTED TILE PAIR
 			var tileSuggested1 = null;
 			var tileSuggested2 = null;
