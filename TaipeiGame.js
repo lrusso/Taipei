@@ -75,7 +75,7 @@ Taipei.Preloader.prototype = {
 
 	create: function()
 		{
-		this.state.start("Taipei.Game");
+		this.state.start("Taipei.Splash");
 		}
 	};
 
