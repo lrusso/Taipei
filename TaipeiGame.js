@@ -355,7 +355,7 @@ Taipei.Game.prototype = {
 									if (this.canBeSelected(this.tilesGroup.children[j])==true)
 										{
 										// CHECKING IF THE FIRST TILE HAS THE SAME FRAME (PICTURE) AS THE SECOND TILE
-										if (tileSuggested1.frameId==this.tilesGroup.children[j].frameId)
+										if (tileSuggested1.frameID==this.tilesGroup.children[j].frameID)
 											{
 											// SETTING THE SECOND TILE VALUE
 											tileSuggested2 = this.tilesGroup.children[j];
@@ -611,9 +611,6 @@ Taipei.Game.prototype = {
 		// LOOPING ALL THE TILES
 		for (var i = 143; i > -1; i--)
 			{
-			// GETTING THE TILELIST FRAME (PICTURE)
-			var frame = parseInt(this.tilesList[i].frame);
-
 			// CREATING THE TILE
 			var tile = game.add.sprite(this.tileLayout[tileLayoutIndex].x, this.tileLayout[tileLayoutIndex].y, "");
 
@@ -631,10 +628,11 @@ Taipei.Game.prototype = {
 			else if (i>=0)  {tile.floor = 4}
 
 			// ADDING REFERENCIAL DATA TO THE TILE
-			tile.frameId = frame;
+			tile.frameID = parseInt(this.tilesList[i].frame);
 			tile.id = i;
 			tile.posit = tileLayoutIndex;
 
+			// ADDING THE TILE TO THE TILE GROUP
 			this.tilesGroup.add(tile);
 
 			// SETTING WHAT FUNCTION WILL BE CALLED WHEN THE USER FINGERS/MOUSE UP A TILE
@@ -667,7 +665,7 @@ Taipei.Game.prototype = {
 		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
 			// ADDING EACH TILE TO THE ORIGINAL TILE ARRAY
-			aOriginTile.push({frameId: this.tilesGroup.children[i].frameId});
+			aOriginTile.push({frameID: this.tilesGroup.children[i].frameID});
 			}
 
 		// SHUFFLING THE ORIGINAL TILE ARRAY
@@ -677,10 +675,10 @@ Taipei.Game.prototype = {
 		for (var i = 0; i < this.tilesGroup.children.length; i++)
 			{
 			// UPDATING EACH TILE FRAME IN THE TILEGROUP WITH TILE FRAME OF THE SHUFFLED TILE ARRAY
-			this.tilesGroup.children[i].frameId = aOriginTile[i].frameId;
+			this.tilesGroup.children[i].frameID = aOriginTile[i].frameID;
 
 			// LOADING THE REQUIRED IMAGE TILE
-			this.tilesGroup.children[i].loadTexture("imageTile" + aOriginTile[i].frameId)
+			this.tilesGroup.children[i].loadTexture("imageTile" + aOriginTile[i].frameID)
 			}
 		},
 
@@ -696,7 +694,7 @@ Taipei.Game.prototype = {
 			if (this.lastTile != null)
 				{
 				// CHECKING IF THE SELECTED TILES HAVE THE SAME FRAME (PICTURE) AND THAT ARE NOT THE SAME TILE INDEX
-				if (this.lastTile.frameId == tile.frameId && this.lastTile.z != tile.z)
+				if (this.lastTile.frameID == tile.frameID && this.lastTile.z != tile.z)
 					{
 					// DESTROYING THE TILES
 					tile.destroy();
@@ -836,7 +834,7 @@ Taipei.Game.prototype = {
 				if (this.canBeSelected(this.tilesGroup.children[i])==true)
 					{
 					// ADDING THE TILE TO THE PENDING TILES
-					pendingTiles.push(this.tilesGroup.children[i].frameId);
+					pendingTiles.push(this.tilesGroup.children[i].frameID);
 					}
 				}
 
