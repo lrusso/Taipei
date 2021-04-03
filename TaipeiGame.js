@@ -306,6 +306,9 @@ Taipei.Game.prototype = {
 
 		// CLEARING THE TILE LIST
 		this.tilesList = new Array();
+
+		// CLEARING THE HINT REQUESTED STATUS
+		this.hintRequested = false;
 		},
 
 	hintGame: function()
