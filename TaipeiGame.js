@@ -284,8 +284,7 @@ Taipei.Game.prototype = {
 		this.shuffleTiles();
 
 		// ADDING THE RESTART BUTTON
-		this.buttonRestartShadow = game.add.sprite(731, 29, "imageRestart");
-		this.buttonRestartShadow.anchor.set(0.5);
+		this.buttonRestartShadow = game.add.sprite(707, 5, "imageRestart");
 		this.buttonRestartShadow.tint = 0x000000;
 		this.buttonRestartShadow.alpha = 0.7;
 		this.buttonRestart = this.add.button(705, 3, "imageRestart", null, this, 2, 1, 0);
