@@ -275,6 +275,7 @@ Taipei.Game.prototype = {
 		{
 		// SETTING THE BACKGROUND COLOR
 		this.stage.backgroundColor = "#024f3e";
+		document.getElementsByTagName("body")[0].className = "taipei_background";
 
 		// ADDING THE TILES GROUP
 		this.tilesGroup = this.add.group();
