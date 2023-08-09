@@ -181,6 +181,9 @@ Taipei.Splash.prototype = {
 
 	create: function()
 		{
+		// HIDING THE LOADING SPINNER
+		document.getElementById("loading").style.display = "none";
+
 		// SETTING THE LOGO OFFSET
 		var logoOffset = 20;
 
