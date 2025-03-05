@@ -189,6 +189,7 @@ Taipei.Splash.prototype = {
 
 		// SETTING THE BACKGROUND COLOR
 		this.stage.backgroundColor = "#FFFFFF";
+		document.getElementsByTagName("body")[0].style.backgroundColor = "white";
 
 		this.imageLogoPart1 = game.add.sprite(0, 0, "imageLogoPart1");
 		this.imageLogoPart1.scale.x = 0.7;
